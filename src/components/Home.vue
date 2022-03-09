@@ -1,5 +1,5 @@
 <template>
-    <h2>HOME PAGE</h2>
+    <h2>{{$route.params}}</h2>
 </template>
 
 <script>

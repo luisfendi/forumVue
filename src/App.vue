@@ -1,20 +1,27 @@
 
+<template>
+  <h2>App</h2>
+  <Nav :list="list"/>
+  <router-view></router-view>
+</template>
+
+
 <script>
+import Nav from './components/Nav.vue';
+
   export default{
-      
+      data(){
+        return {
+          name: 'LUIANAV',
+          list: ['brazil', 'lisabon', 'moscow']
+        }
+      },
+      components: {
+        Nav: Nav
+      }
   }
 </script>
 
-<template>
-  <h2>App</h2>
-  <div>
-   <router-link to="/">Go to Home</router-link>
-   <router-link to="/about">Go to About</router-link>
-  </div>
-
-    <router-view></router-view>
-
-</template>
 
 <style>
 @import './assets/base.css';
