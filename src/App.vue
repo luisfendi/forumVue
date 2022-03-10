@@ -1,13 +1,12 @@
-
 <template>
-  <h2>App</h2>
-  <Nav :list="list"/>
+  <h1 class="title">Forum</h1>
+  <Menu :list="list"/>
   <router-view></router-view>
 </template>
 
 
 <script>
-import Nav from './components/Nav.vue';
+import Menu from './components/Menu.vue';
 
   export default{
       data(){
@@ -17,14 +16,15 @@ import Nav from './components/Nav.vue';
         }
       },
       components: {
-        Nav: Nav
+        Menu: Menu
       }
   }
 </script>
 
 
-<style>
+<style lang="scss" scoped>
 @import './assets/base.css';
+
 
 #app {
   max-width: 1280px;
@@ -34,5 +34,8 @@ import Nav from './components/Nav.vue';
   font-weight: normal;
 }
 
+.title {
+ 
+}
 
 </style>
