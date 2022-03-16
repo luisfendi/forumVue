@@ -4,11 +4,12 @@
         <input type="checkbox" class="menu-burger--input" id="checkbox">
         <label for="checkbox"><span></span></label>
         <ul class="menu-burger--list">
-            <li v-for="k in 9">{{k}}</li>
+            <router-link :to="person.name"
+            v-for="person in list"
+            @click="show()"
+            >{{person.name}}</router-link>
         </ul>
     </div>
-         <router-link v-for="link in list" 
-         :to=" '/' + link" @click="show(link)">{{link}}</router-link> 
    </div>
     
 </template>
@@ -16,10 +17,27 @@
 <script>
 
 export default{
-    props:['list'],
+    data(){
+        return {
+            list: [
+                {
+                name: 'monika',
+                img: 'https://images.pexels.com/photos/10222837/pexels-photo-10222837.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+                },
+                {
+                name: 'veronika',
+                img: 'https://images.pexels.com/photos/10047607/pexels-photo-10047607.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+                },
+                {
+                name: 'angelina',
+                img: 'https://images.pexels.com/photos/10047610/pexels-photo-10047610.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+                },
+            ]
+        }
+    },
     methods: {
-        show(a){
-            console.log(a)
+        show(){
+            console.log(this.$route.params.name)
             }
     }
 }

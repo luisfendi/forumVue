@@ -3,7 +3,8 @@
     <h1 class="text-title">Forum</h1>
     <h3 class="text-title1">about <span class="sub-title">pictures</span></h3>
   </div>
-  <Menu :list="list"/>
+  <Menu/>
+  <router-link to="/">Home</router-link>
   <router-view></router-view>
 </template>
 
@@ -15,7 +16,19 @@ import textAnimate from './assets/modulesJS/gsapText.js'
       data(){
         return {
           name: 'LUIANAV',
-          list: ['brazil', 'lisabon', 'moscow']
+          list: [
+                {
+                name: 'monika',
+                img: 'https://images.pexels.com/photos/10222837/pexels-photo-10222837.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+                },
+                {
+                name: 'veronika',
+                img: 'https://images.pexels.com/photos/10047607/pexels-photo-10047607.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+                },
+                {
+                name: 'angelina',
+                img: 'https://images.pexels.com/photos/10047610/pexels-photo-10047610.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+                }]
         }
       },
       components: {
@@ -24,6 +37,11 @@ import textAnimate from './assets/modulesJS/gsapText.js'
       mounted() {
         textAnimate('.sub-title', 'phrases')
       },
+      provide(){
+        return {
+          list: this.list
+        }
+      }
   }
 </script>
 
