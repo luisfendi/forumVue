@@ -2,12 +2,14 @@ import * as VueRouter from 'vue-router'
 
 import Home from './components/Home.vue'
 import Post from './components/Post.vue'
+import Create from './components/Create.vue'
 
 
 
 
 const routes = [
-    { path: '/', component: Home },    
+    { path: '/', component: Home },
+    {path: '/create', component: Create}    
   ]
  let list =  [
     {

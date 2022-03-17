@@ -1,24 +1,34 @@
 <template>
     <div class="menu">
     <div class="menu-burger">
-        <input type="checkbox" class="menu-burger--input" id="checkbox">
+        <input type="checkbox" 
+        class="menu-burger--input" 
+        id="checkbox"
+        v-model="burger">
         <label for="checkbox"><span></span></label>
         <ul class="menu-burger--list">
-            <router-link :to="person.name"
-            v-for="person in list"
-            @click="show()"
-            >{{person.name}}</router-link>
+            <router-link 
+            :to="person.name"
+            v-for="(person, key) in list"
+            :key="key"
+            @click="closeBurger">{{person.name}}</router-link>
+            <router-link to='/create'>to create</router-link>
         </ul>
     </div>
+    <h3>fbList</h3>
+    <ul>
+        <li v-for="(item,i) in fbList" :key="i">{{item}}</li>
+    </ul>
    </div>
     
 </template>
 
 <script>
-
+import getList from '../assets/modulesJS/getList'
 export default{
     data(){
         return {
+            burger: false,
             list: [
                 {
                 name: 'monika',
@@ -32,13 +42,18 @@ export default{
                 name: 'angelina',
                 img: 'https://images.pexels.com/photos/10047610/pexels-photo-10047610.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
                 },
-            ]
+            ],
+            fbList: '',
         }
     },
+    mounted(){
+        let data=getList()
+        data.then(a => this.fbList = a);
+    },
     methods: {
-        show(){
-            console.log(this.$route.params.name)
-            }
+        closeBurger(){
+            this.burger = !this.burger
+        }
     }
 }
 </script>

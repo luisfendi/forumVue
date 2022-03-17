@@ -1,8 +1,5 @@
 <template>
-  <div class="text">
-    <h1 class="text-title">Forum</h1>
-    <h3 class="text-title1">about <span class="sub-title">pictures</span></h3>
-  </div>
+  
   <Menu/>
   <router-link to="/">Home</router-link>
   <router-view></router-view>
@@ -11,7 +8,6 @@
 
 <script>
 import Menu from './components/Menu.vue';
-import textAnimate from './assets/modulesJS/gsapText.js'
   export default{
       data(){
         return {
@@ -34,9 +30,7 @@ import textAnimate from './assets/modulesJS/gsapText.js'
       components: {
         Menu: Menu
       },
-      mounted() {
-        textAnimate('.sub-title', 'phrases')
-      },
+      
       provide(){
         return {
           list: this.list

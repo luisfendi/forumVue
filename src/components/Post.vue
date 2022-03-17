@@ -2,8 +2,8 @@
 <div>
     <div class="window"></div>
     <h3>{{name}}</h3>
-    <img :src="fullList[name] ? list[img] : '0'">
-    <p>{{item}}</p>
+    <img :src="item.img">
+    <p>{{item.name}}</p>
 </div>
 </template>
 
@@ -20,12 +20,9 @@
                 return this.$route.params.name
             },
             item(){
-                this.fullList.filter(i => {
-                    console.log(i[name])
-                    return i[this.name]
-                })
-            }
-        }
+                return this.fullList.filter(i => i.name == this.name)[0]
+            },
+        },
     }
 </script>
 <style>
