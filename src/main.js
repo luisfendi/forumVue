@@ -1,7 +1,13 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import {router} from './router.js'
+import {routing} from './router.js'
   
-const app = createApp(App)
-app.use(router)
-app.mount('#app')
+
+const app = createApp(App);
+app.config.unwrapInjectedRef = true
+
+routing().then(a => {
+    app.use(a)
+    app.mount('#app');
+})
+

@@ -1,34 +1,61 @@
 <template>
-<div>
-    <div class="window"></div>
-    <h3>{{name}}</h3>
-    <img :src="item.img">
-    <p>{{item.name}}</p>
+<div class="content">
+    <img :src="info.img" class="content-img" @click="show('working')">
+    <h3 class="content-name">{{info.name}}</h3>
+    <span class="conetent-type">{{info.type}}</span>
+    <Form/>
+   <ul class="content-comments">
+       <li v-for="(comment,i) in comments" :key="i"
+       @click="show(i)"
+       >
+            <h4>{{comment.author}}</h4>
+            <p>{{comment.text}}</p>
+        </li>
+   </ul>
 </div>
 </template>
 
 <script>
-    export default {
+import Form from './Form.vue'
+import {ref,  onValue, db} from "../assets/modulesJS/fireBase"
+import key from "../assets/modulesJS/getKeyInObject"
+
+   export default {
         inject: ['list'],
         data(){
             return { 
-                fullList: this.list,
+                info: 'info',
+            }
+        },  
+        created(){
+            this.getInfo();
+        },
+        components: {
+            Form: Form
+        },
+        computed:{
+            comments(){
+                return this.info.comments
             }
         },
-        computed: {
-            name(){
-                return this.$route.params.name
+        methods: {
+            show(i){console.log(i)},
+            getInfo(){
+                    const postRef = ref(db, 'posts/' + this.$route.params.key)
+                    onValue(postRef, snap => {
+                       this.info = snap.val()
+                    })
             },
-            item(){
-                return this.fullList.filter(i => i.name == this.name)[0]
-            },
-        },
+            getKey(item){
+                console.log(key(item))
+                return key(item)
+            }
+        }
     }
 </script>
 <style>
-.window{
-    width: 10vw;
-    height: 10vw;
-    border: 2px solid black;
-}
+ img {
+     width: 200px;
+     height: 200px;
+ }
 </style>

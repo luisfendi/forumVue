@@ -1,41 +1,35 @@
 <template>
   
-  <Menu/>
-  <router-link to="/">Home</router-link>
-  <router-view></router-view>
+  <Menu :list="list"/>
+  <router-view :key="$route.params.key"></router-view>
 </template>
 
 
 <script>
 import Menu from './components/Menu.vue';
+import getList from './assets/modulesJS/getList'
+import {computed} from 'vue';
   export default{
       data(){
         return {
-          name: 'LUIANAV',
-          list: [
-                {
-                name: 'monika',
-                img: 'https://images.pexels.com/photos/10222837/pexels-photo-10222837.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-                },
-                {
-                name: 'veronika',
-                img: 'https://images.pexels.com/photos/10047607/pexels-photo-10047607.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-                },
-                {
-                name: 'angelina',
-                img: 'https://images.pexels.com/photos/10047610/pexels-photo-10047610.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-                }]
+          list: '',
         }
+      },
+      beforeMount(){
+                    getList().then(a => {
+                      this.list = a;
+                    });
+                    
       },
       components: {
         Menu: Menu
       },
-      
       provide(){
         return {
-          list: this.list
+          list: computed(() => this.list)
         }
       }
+      
   }
 </script>
 

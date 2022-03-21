@@ -3,7 +3,7 @@ import * as VueRouter from 'vue-router'
 import Home from './components/Home.vue'
 import Post from './components/Post.vue'
 import Create from './components/Create.vue'
-
+import getList from './assets/modulesJS/getList'
 
 
 
@@ -11,31 +11,17 @@ const routes = [
     { path: '/', component: Home },
     {path: '/create', component: Create}    
   ]
- let list =  [
-    {
-    name: 'monika',
-    img: 'https://images.pexels.com/photos/10222837/pexels-photo-10222837.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-    },
-    {
-    name: 'veronika',
-    img: 'https://images.pexels.com/photos/10047607/pexels-photo-10047607.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-    },
-    {
-    name: 'angelina',
-    img: 'https://images.pexels.com/photos/10047610/pexels-photo-10047610.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-    },
-]
-  let generateListPath = list.map(v => {
-    return {
-      path: `/:name`,
-      component: Post
-    }
+
+
+async function routing(){
+  let list = await getList();
+  list.forEach(el => {
+    routes.push({path: `/:key`, component: Post})
   })
-
-
-const router = VueRouter.createRouter({
+    return VueRouter.createRouter({
     history: VueRouter.createWebHashHistory(),
-    routes: routes.concat(generateListPath), 
+    routes: routes, 
   })
+}
 
-export {router}
+ export {routing}

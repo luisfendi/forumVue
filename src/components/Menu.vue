@@ -7,52 +7,37 @@
         v-model="burger">
         <label for="checkbox"><span></span></label>
         <ul class="menu-burger--list">
-            <router-link 
-            :to="person.name"
-            v-for="(person, key) in list"
-            :key="key"
-            @click="closeBurger">{{person.name}}</router-link>
+            
+            <router-link to='/'>home</router-link>
             <router-link to='/create'>to create</router-link>
+            <router-link v-for="item in list" 
+            :to="key(item)"
+            :key="key(item)"
+            >{{item[key(item)].name}}</router-link>
+
+            
         </ul>
     </div>
-    <h3>fbList</h3>
-    <ul>
-        <li v-for="(item,i) in fbList" :key="i">{{item}}</li>
-    </ul>
    </div>
     
 </template>
 
 <script>
-import getList from '../assets/modulesJS/getList'
+import key from "../assets/modulesJS/getKeyInObject"
 export default{
+    props:['list'],
     data(){
         return {
             burger: false,
-            list: [
-                {
-                name: 'monika',
-                img: 'https://images.pexels.com/photos/10222837/pexels-photo-10222837.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-                },
-                {
-                name: 'veronika',
-                img: 'https://images.pexels.com/photos/10047607/pexels-photo-10047607.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-                },
-                {
-                name: 'angelina',
-                img: 'https://images.pexels.com/photos/10047610/pexels-photo-10047610.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-                },
-            ],
             fbList: '',
         }
-    },
-    mounted(){
-        let data=getList()
-        data.then(a => this.fbList = a);
     },
     methods: {
         closeBurger(){
             this.burger = !this.burger
+        },
+        key(item){
+            return key(item)[0]
         }
     }
 }
