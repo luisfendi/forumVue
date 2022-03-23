@@ -1,2 +1,16 @@
 $green: rgb(38, 143, 38);
 $orange: rgb(240, 166, 30);
+
+@mixin pseudoClassMenuItem {
+    &::after{
+        content: '';
+        display: block;
+        width: 5vw;
+        height: 5vw;
+        background-size:cover;
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translateY(50%);
+    }
+}

@@ -1,0 +1,21 @@
+.links-home {
+    position: relative;
+    position: sticky;
+    left: 48vw;
+    top: 1vh;
+    span {
+        display: none;
+    }
+    &::after{
+        content: '';
+        display: block;
+        width: 5vw;
+        height: 5vw;
+        background-image: url("./assets/icons/home.svg");
+        background-size:cover;
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translateX(110%);
+    }
+}
