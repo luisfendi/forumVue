@@ -6,17 +6,20 @@
         id="checkbox"
         v-model="burger">
         <label for="checkbox"><span></span></label>
-        <ul class="menu-burger--list">
-            
-            <router-link to='/'>home</router-link>
-            <router-link to='/create'>to create</router-link>
-            <router-link v-for="item in list" 
-            :to="key(item)"
-            :key="key(item)"
-            >{{item[key(item)].name}}</router-link>
-
-            
-        </ul>
+        <Transition name="listEnter">
+            <ul class="menu-burger--list links" v-if="burger">
+                
+                <router-link class="links-createPost" to='/create'
+                @click="closeBurger">to create</router-link>
+                <router-link class="links-page"  
+                v-for="item in list" 
+                :to="key(item)"
+                :key="key(item)"
+                @click="closeBurger"
+                >{{item[key(item)].name}}</router-link>
+        
+            </ul>
+        </Transition>
     </div>
    </div>
     
@@ -45,9 +48,11 @@ export default{
 
 <style lang="scss" scoped>
 @import '../assets/base.scss';
+@import '../assets/scss/general.scss';
 
 
 .menu {
+    width: 25%;
     &-burger{
         input {
             display:none;
@@ -75,9 +80,8 @@ export default{
         }
 
         label {
-            border: 2px solid black;
-            width: 4vw;
-            height: 4vw;
+            width: 6vw;
+            height: 6vw;
             display:flex;
             justify-content: center;
             align-items: center;
@@ -111,7 +115,32 @@ export default{
     }
 }
 
+.links {
+    a {
+       color: black;
+       text-decoration: none;
+       padding: 10% 5% 10% 5%;
+       background: yellow;
+    }
 
+     .links-page{
+        position: relative;
+        @include pseudoClassMenuItem;
+          &::after{
+              background: url("../assets/icons/person.svg") 
+        } 
+    }  
+}
+
+.listEnter-enter-active,
+.listEnter-leave-active {
+    transition: opacity 0.5s ease;
+}
+
+.listEnter-enter-from,
+.listEnter-leave-to {
+    opacity: 0;
+}
 
 
 

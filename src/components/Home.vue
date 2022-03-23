@@ -14,3 +14,28 @@ import textAnimate from '../assets/modulesJS/gsapText.js'
       },
     }
 </script>
+
+<style scoped lang="scss">
+@import '../assets/scss/general.scss';
+
+.text{
+  position: absolute;
+  top: 30vh;
+  left: 25vw;
+  &-title {
+    font-size: 5rem;
+  }
+   &-title1 {
+    font-size: 2rem;
+  }
+}
+
+.orange {
+    color: red;
+    background: $orange;
+  }
+.green {
+    color: green;
+    background: $green;
+}
+</style>
