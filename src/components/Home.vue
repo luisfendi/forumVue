@@ -15,7 +15,7 @@ import textAnimate from '../assets/modulesJS/gsapText.js'
     }
 </script>
 
-<style scoped lang="scss">
+<style  lang="scss">
 @import '../assets/scss/general.scss';
 
 .text{
@@ -31,11 +31,11 @@ import textAnimate from '../assets/modulesJS/gsapText.js'
 }
 
 .orange {
-    color: red;
+    color: black;
     background: $orange;
   }
 .green {
-    color: green;
+    color: white;
     background: $green;
 }
 </style>

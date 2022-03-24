@@ -73,10 +73,6 @@ export default{
                     }
               }     
             }
-            &:checked~ul{
-                display: flex;
-                flex-direction: column;
-            }
         }
 
         label {
@@ -108,19 +104,25 @@ export default{
                 }
             }
         }
-        
-        &--list {
-            display: none;
-        }
+    
     }
 }
 
 .links {
+    border: 2px solid black;
+    border-radius: 15px;
+    border-left: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-top: 6vw;
     a {
        color: black;
        text-decoration: none;
        padding: 10% 5% 10% 5%;
-       background: yellow;
+       border-bottom: 1px solid black;
+       &:last-child{
+           border: none;
+       }
     }
 
      .links-page{
@@ -134,12 +136,17 @@ export default{
 
 .listEnter-enter-active,
 .listEnter-leave-active {
-    transition: opacity 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.listEnter-leave-active {
+    transition: all 0.3s ease;
 }
 
 .listEnter-enter-from,
 .listEnter-leave-to {
     opacity: 0;
+    transform: translateX(-50px);
 }
 
 
