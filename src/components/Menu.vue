@@ -52,7 +52,11 @@ export default{
 
 
 .menu {
+    position: sticky;
+    top: 0;
+    left: 0;
     width: 25%;
+    z-index: 5;
     &-burger{
         input {
             display:none;
@@ -76,6 +80,7 @@ export default{
         }
 
         label {
+           
             width: 6vw;
             height: 6vw;
             display:flex;
@@ -109,8 +114,12 @@ export default{
 }
 
 .links {
+    background: white;
+    width: 100%;
+    z-index: 3;
+    position: absolute;
     border: 2px solid black;
-    border-radius: 15px;
+    border-radius: 10px;
     border-left: none;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
