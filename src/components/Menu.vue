@@ -134,7 +134,7 @@ export default{
 
 .listEnter-enter-active,
 .listEnter-leave-active {
-    transition: opacity 0.5s ease;
+    transition: opacity .5s ease;
 }
 
 .listEnter-enter-from,
