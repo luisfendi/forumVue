@@ -14,7 +14,7 @@ export default (selector, text) => {
         text: {
             value: text,
             delimiter: '',
-            newClass: 'green,'
+            newClass: 'green'
         },
         ease: 'none',
     }, ">") 

@@ -52,7 +52,11 @@ export default{
 
 
 .menu {
+    position: sticky;
+    top: 0;
+    left: 0;
     width: 25%;
+    z-index: 5;
     &-burger{
         input {
             display:none;
@@ -73,13 +77,10 @@ export default{
                     }
               }     
             }
-            &:checked~ul{
-                display: flex;
-                flex-direction: column;
-            }
         }
 
         label {
+           
             width: 6vw;
             height: 6vw;
             display:flex;
@@ -108,19 +109,29 @@ export default{
                 }
             }
         }
-        
-        &--list {
-            display: none;
-        }
+    
     }
 }
 
 .links {
+    background: white;
+    width: 100%;
+    z-index: 3;
+    position: absolute;
+    border: 2px solid black;
+    border-radius: 10px;
+    border-left: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-top: 6vw;
     a {
        color: black;
        text-decoration: none;
        padding: 10% 5% 10% 5%;
-       background: yellow;
+       border-bottom: 1px solid black;
+       &:last-child{
+           border: none;
+       }
     }
 
      .links-page{
@@ -132,14 +143,19 @@ export default{
     }  
 }
 
-.listEnter-enter-active,
+.listEnter-enter-active{
+    transition: all 0.5s ease;
+}
+
 .listEnter-leave-active {
-    transition: opacity .5s ease;
+    transition: all 0.3s ease;
+
 }
 
 .listEnter-enter-from,
 .listEnter-leave-to {
     opacity: 0;
+    transform: translateX(-50px);
 }
 
 
