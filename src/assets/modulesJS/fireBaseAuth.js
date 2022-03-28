@@ -1,35 +1,57 @@
-import {getAuth, createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth"
+import {
+   getAuth,
+   createUserWithEmailAndPassword,
+   signInWithEmailAndPassword,
+   onAuthStateChanged,
+   updateProfile
+   } from "firebase/auth";
+
 import {app} from './fireBase';
 
 const auth = getAuth(app);
 
-export default (email, password)=>{
+function createUser(email, password, displayName){
     createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-    // Signed in 
         const user = userCredential.user;
-        console.log(user)
-    // ...
+        updateProfile(user, {
+          displayName,
+        })
     })
     .catch((error) => {
-        const errorCode = error.code;
         const errorMessage = error.message;
-    // ..
+      console.log(errorMessage)
     });
-
-
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-          // User is signed in, see docs for a list of available properties
-          // https://firebase.google.com/docs/reference/js/firebase.User
-          const uid = user.uid;
-          console.log(uid)
-          // ...
-        } else {
-            console.log('________________')
-
-          // User is signed out
-          // ...
-        }
-      });
 }
+
+function signIn(email, pass){
+  signInWithEmailAndPassword(auth, email, pass)
+  .then((userCredential) => {
+    const user = userCredential.user;
+  })
+  .catch((error) => {
+    const errorMessage = error.message;
+    console.log(errorMessage)
+  });
+}
+
+
+ function authState(){
+   return new Promise(res => {
+    onAuthStateChanged(auth, (user) => {
+      console.log('state change')
+      if (user) {
+        console.log(user.displayName)
+        res(user.displayName)
+        return user.displayName
+      } 
+    })
+   })  
+}
+
+
+
+// function detectUser(){
+//   return auth.currentUser.displayName;
+// }
+export {createUser, signIn, authState, onAuthStateChanged, auth}

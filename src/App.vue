@@ -4,33 +4,36 @@
   @click="signUp = false"><span>home</span></router-link>
   <Menu :list="list"/>
   <router-view :key="$route.params.key"></router-view>
-  <button @click="signUp = true">sign up</button>
-  <sign-up-form v-if="signUp"/>
+  <h1>{{user}}</h1>
 </template>
 
 
 <script>
 import Menu from './components/Menu.vue';
 import getList from './assets/modulesJS/getList';
-import signUpForm from './components/signUpForm.vue';
+import {authState} from './assets/modulesJS/fireBaseAuth';
 
 import {computed} from 'vue';
   export default{
       data(){
         return {
           list: '',
-          signUp: false,
         }
+      },
+      created(){
+        console.log('created')
+        this.detectUser()
       },
       beforeMount(){
                     getList().then(a => {
                       this.list = a;
-                    });
-                    
+                    });              
+      },
+      computed:{
+        
       },
       components: {
         Menu: Menu,
-        'sign-up-form': signUpForm,
       },
       provide(){
         return {

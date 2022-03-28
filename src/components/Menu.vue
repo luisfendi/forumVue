@@ -17,6 +17,8 @@
                 :key="key(item)"
                 @click="closeBurger"
                 >{{item[key(item)].name}}</router-link>
+                <router-link @click="closeBurger" to="/signup">регистрация</router-link>
+                <router-link @click="closeBurger" to="/signin">вход</router-link>
         
             </ul>
         </Transition>

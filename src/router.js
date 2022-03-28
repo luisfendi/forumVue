@@ -3,13 +3,17 @@ import * as VueRouter from 'vue-router'
 import Home from './components/Home.vue'
 import Post from './components/Post.vue'
 import Create from './components/Create.vue'
+import signUpForm from './components/signUpForm.vue'
+import signInForm from './components/signInForm.vue'
 import getList from './assets/modulesJS/getList'
 
 
 
 const routes = [
     { path: '/', component: Home },
-    {path: '/create', component: Create}    
+    {path: '/create', component: Create},
+    {path: '/signup', component: signUpForm},    
+    {path: '/signin', component: signInForm},    
   ]
 
 
