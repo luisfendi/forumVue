@@ -4,14 +4,7 @@
     <h3 class="content-name">{{info.name}}</h3>
     <span class="conetent-type">{{info.type}}</span>
     <Form/>
-    <Form/>
-    <Form/>
-    <Form/>
-    <Form/>
-    <Form/>
-    <Form/>
-    <Form/>
-    <Form/>
+   
     <ul class="content-comments">
         <li v-for="(comment,i) in comments" :key="i"
         @click="show(i)">

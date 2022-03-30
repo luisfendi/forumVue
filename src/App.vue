@@ -1,7 +1,6 @@
 <template>
-  <router-link class="links-home" 
-  to='/'
-  @click="signUp = false"><span>home</span></router-link>
+  
+  <Link class="links-home" :to="'/'" @click="signUp = false" :title="'home'"/>
   <Menu :list="list"/>
   <router-view :key="$route.params.key"></router-view>
   <h1>{{user}}</h1>
@@ -9,7 +8,11 @@
 
 
 <script>
+// <router-link class="links-home" 
+//   to='/'
+//   @click="signUp = false"><span>home</span></router-link>
 import Menu from './components/Menu.vue';
+import Link from './components/routerLink.vue';
 import getList from './assets/modulesJS/getList';
 import {authState} from './assets/modulesJS/fireBaseAuth';
 
@@ -21,8 +24,7 @@ import {computed} from 'vue';
         }
       },
       created(){
-        console.log('created')
-        this.detectUser()
+        //this.detectUser()
       },
       beforeMount(){
                     getList().then(a => {
@@ -34,6 +36,7 @@ import {computed} from 'vue';
       },
       components: {
         Menu: Menu,
+        Link: Link,
       },
       provide(){
         return {

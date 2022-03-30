@@ -21,7 +21,7 @@ export default {
         }
     },
     created(){
-        this.detectUser()
+        //this.detectUser()
     },
     methods:{
         signIn(){
