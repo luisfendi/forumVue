@@ -1,6 +1,5 @@
 import { initializeApp } from "firebase/app";
 import {getDatabase, ref, get, onValue, set, push} from "firebase/database";
-
 const firebaseConfig = {
   apiKey: "AIzaSyBIZ6GKKL-ChGaOSUVidTX39UVv8NQ9RNI",
   authDomain: "db-of-material-for-discuss.firebaseapp.com",
