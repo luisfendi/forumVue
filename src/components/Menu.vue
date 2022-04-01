@@ -26,16 +26,6 @@
 </template>
 
 <script>
-//  <router-link class="links-page"  
-//                 v-for="item in list" 
-//                 :to="key(item)"
-//                 :key="key(item)"
-//                 @click="closeBurger"
-//                 >{{item[key(item)].name}}</router-link>
-//  <router-link @click="closeBurger" to="/signup">регистрация</router-link>
-//                 <router-link @click="closeBurger" to="/signin">вход</router-link>
-// <router-link class="links-createPost" to='/create'
-//                 @click="closeBurger">to create</router-link>
 import key from "../assets/modulesJS/getKeyInObject"
 import Link from './routerLink.vue'
 export default{

@@ -4,7 +4,7 @@
       <input type="password" placeholder="password" v-model="password">
       <button type="submit" 
       @click="signIn()">вход</button>
-      <div>{{user}}</div>
+      <h5>sign in{{user}}</h5>
   </form>
 </template>
 
@@ -18,31 +18,30 @@ export default {
             email: '',
             name: '',
             password: '',
+            user: '',
         }
-    },
-    created(){
-        //this.detectUser()
     },
     methods:{
         signIn(){
-            return signIn(this.email, this.password)
+            return new Promise((res, rej )=> {
+                console.log('promise')
+                signIn(this.email, this.password)
+                res('a')
+            })
+            .then((a)=>{
+                this.isSigned(a)
+            })
         },
-        // detectUser(){
-        //     onAuthStateChanged(auth, (user) => {
-        //     console.log('state change')
-        //     if (user) {
-        //         console.log(user.displayName);
-        //         this.user = user.displayName;
-        //         return user.displayName
-        //     } 
-        //     })
-        // }
+        isSigned(res){
+                    onAuthStateChanged(auth, (user) => {
+                    console.log('state change' + res)
+                    if (user) {
+                        this.user = user.displayName
+                        console.log(user.displayName)
+                        } 
+                    })
+        }
     },
-    computed: {
-        // user(){
-        //     return authState()
-        // }
-    }
 }
 </script>
 
