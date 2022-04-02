@@ -1,9 +1,10 @@
 <template>
-  <Link class="links-home" :to="'/'" @click="signUp = false"/>
+  <Link class="links-home" :to="'/'"/>
   <Menu :list="list"/>
   <router-view :key="$route.params.key"></router-view>
-  <h3>{{user}}</h3>
-  <button @click="out">signOut</button>
+    <Link class="profile-link" :to="'profil'" :title="'profile'"/>
+  <button @click="out" v-if="user">signOut</button>
+  <Link :title="'войти'" :to="'signin'" v-if="!user"/>
 </template>
 
 
@@ -24,12 +25,7 @@ import {computed} from 'vue';
       methods: {
         isSigned(res){
                     onAuthStateChanged(auth, (user) => {
-                    if (user) {
-                        this.user = user.displayName
-                        } 
-                        else {
-                        this.user = "_____"
-                    }
+                    this.user = user
                     })
         },
         out(){

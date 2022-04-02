@@ -46,7 +46,7 @@ export default {
                         console.log(user.displayName)
                         } 
                         else {
-                        this.user = "_____"
+                        this.user = null
                     }
                     })
         }

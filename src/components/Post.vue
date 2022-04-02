@@ -3,8 +3,8 @@
     <img :src="info.img" class="content-img" @click="show('working')">
     <h3 class="content-name">{{info.name}}</h3>
     <span class="conetent-type">{{info.type}}</span>
-    <Form/>
-   
+    <Form :author="user"/>
+   <h3>{{user?.uid}}</h3>
     <ul class="content-comments">
         <li v-for="(comment,i) in comments" :key="i"
         @click="show(i)">
@@ -19,16 +19,19 @@
 import Form from './Form.vue'
 import {ref,  onValue, db} from "../assets/modulesJS/fireBase"
 import key from "../assets/modulesJS/getKeyInObject"
+import {onAuthStateChanged, auth} from '../assets/modulesJS/fireBaseAuth';
 
    export default {
         inject: ['list'],
         data(){
             return { 
                 info: 'info',
+                user: '',
             }
         },  
         created(){
             this.getInfo();
+            this.isSigned()
         },
         components: {
             Form: Form
@@ -49,7 +52,12 @@ import key from "../assets/modulesJS/getKeyInObject"
             getKey(item){
                 console.log(key(item))
                 return key(item)
-            }
+            },
+            isSigned(){
+                        onAuthStateChanged(auth, (user) => {
+                            this.user = user;
+                       })
+            },
         }
     }
 </script>
