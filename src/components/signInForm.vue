@@ -5,6 +5,7 @@
       <button type="submit" 
       @click="signIn()">вход</button>
       <h5>sign in{{user}}</h5>
+      <h1>{{status}}</h1>
   </form>
 </template>
 
@@ -19,6 +20,11 @@ export default {
             name: '',
             password: '',
             user: '',
+        }
+    },
+    computed: {
+        status(){
+            return this.isSigned()
         }
     },
     methods:{
@@ -39,6 +45,9 @@ export default {
                         this.user = user.displayName
                         console.log(user.displayName)
                         } 
+                        else {
+                        this.user = "_____"
+                    }
                     })
         }
     },

@@ -3,7 +3,8 @@ import {
    createUserWithEmailAndPassword,
    signInWithEmailAndPassword,
    onAuthStateChanged,
-   updateProfile
+   updateProfile,
+   signOut,
    } from "firebase/auth";
 
 import {app} from './fireBase';
@@ -47,8 +48,8 @@ function signIn(email, pass){
 }
 
 
-
-// function detectUser(){
-//   return auth.currentUser.displayName;
-// }
-export {createUser, signIn, authState, onAuthStateChanged, auth}
+function sign_Out(){
+  console.log('signing out')
+  return signOut(auth)
+}
+export {createUser, signIn, sign_Out, authState, onAuthStateChanged, auth}

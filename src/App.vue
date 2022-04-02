@@ -3,6 +3,7 @@
   <Menu :list="list"/>
   <router-view :key="$route.params.key"></router-view>
   <h3>{{user}}</h3>
+  <button @click="out">signOut</button>
 </template>
 
 
@@ -10,7 +11,7 @@
 import Menu from './components/Menu.vue';
 import Link from './components/routerLink.vue';
 import getList from './assets/modulesJS/getList';
-import {onAuthStateChanged, auth} from './assets/modulesJS/fireBaseAuth';
+import {onAuthStateChanged, sign_Out, auth} from './assets/modulesJS/fireBaseAuth';
 
 import {computed} from 'vue';
   export default{
@@ -26,7 +27,13 @@ import {computed} from 'vue';
                     if (user) {
                         this.user = user.displayName
                         } 
+                        else {
+                        this.user = "_____"
+                    }
                     })
+        },
+        out(){
+          return sign_Out()
         }
       },
       created(){
@@ -36,9 +43,6 @@ import {computed} from 'vue';
                     getList().then(a => {
                       this.list = a;
                     });              
-      },
-      computed:{
-        
       },
       components: {
         Menu: Menu,
