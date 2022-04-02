@@ -31,7 +31,6 @@ function signIn(email, pass){
   })
   .catch((error) => {
     const errorMessage = error.message;
-    console.log(errorMessage)
   });
 }
 
@@ -39,9 +38,7 @@ function signIn(email, pass){
  function authState(){
    return new Promise(res => {
     onAuthStateChanged(auth, (user) => {
-      console.log('state change')
       if (user) {
-        console.log(user.displayName)
         res(user.displayName)
         return user.displayName
       } 

@@ -13,13 +13,16 @@
             class="createButton"
             @click="create"
             >create</button>
+            <h2>issigned: {{isSigned()}}</h2>
         </form>
     </div>
     
 </template>
 
 <script>
-import createPost from '../assets/modulesJS/buildPost'
+import createPost from '../assets/modulesJS/buildPost';
+import {auth, onAuthStateChanged} from '../assets/modulesJS/fireBaseAuth';
+
 export default {
     data(){
         return{
@@ -31,6 +34,14 @@ export default {
     methods: {
         create(){
             return createPost(this.postName, this.postImg, this.postType)
+        },
+        isSigned(res){
+                onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    this.user = user.displayName
+                    return true
+                } 
+                }) 
         }
     }
 }

@@ -8,18 +8,16 @@
         <label for="checkbox"><span></span></label>
         <Transition name="listEnter">
             <ul class="menu-burger--list links" v-if="burger">
-                
-                <router-link class="links-createPost" to='/create'
-                @click="closeBurger">to create</router-link>
-                <router-link class="links-page"  
-                v-for="item in list" 
+                <Link v-for="item in list"
+                class="links-page"  
                 :to="key(item)"
                 :key="key(item)"
-                @click="closeBurger"
-                >{{item[key(item)].name}}</router-link>
-                <router-link @click="closeBurger" to="/signup">регистрация</router-link>
-                <router-link @click="closeBurger" to="/signin">вход</router-link>
-        
+                :title="item[key(item)].name"
+                @closeMenu="closeBurger"
+                />
+                <Link :to="'signup'" :title="'регистрация'" @closeMenu="closeBurger"/>
+                <Link :to="'signin'" :title="'вход'" @closeMenu="closeBurger"/>
+                <Link :to="'create'" :title="'создать пост'" @closeMenu="closeBurger"/>
             </ul>
         </Transition>
     </div>
@@ -29,6 +27,7 @@
 
 <script>
 import key from "../assets/modulesJS/getKeyInObject"
+import Link from './routerLink.vue'
 export default{
     props:['list'],
     data(){
@@ -44,6 +43,9 @@ export default{
         key(item){
             return key(item)[0]
         }
+    },
+    components: {
+        Link: Link,
     }
 }
 </script>
