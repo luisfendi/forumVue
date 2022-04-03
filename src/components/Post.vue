@@ -31,7 +31,7 @@ import {onAuthStateChanged, auth} from '../assets/modulesJS/fireBaseAuth';
         },  
         created(){
             this.getInfo();
-            this.isSigned()
+            this.isSigned();
         },
         components: {
             Form: Form

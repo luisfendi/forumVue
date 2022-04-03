@@ -1,4 +1,4 @@
-.links-home {
+.links-home{
     position: sticky;
     left: 48vw;
     top: 1vh;
@@ -19,6 +19,12 @@
     }
 }
 
+
+.profile-link {
+    position: sticky;
+    right: 4vw;
+    top: 1vh;
+}
 * {
     margin: 0;
     padding: 0;
