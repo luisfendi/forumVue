@@ -3,8 +3,8 @@
     <img :src="info.img" class="content-img" @click="show('working')">
     <h3 class="content-name">{{info.name}}</h3>
     <span class="conetent-type">{{info.type}}</span>
-    <Form :author="user"/>
-   <h3>{{user?.uid}}</h3>
+    <Form @signIn="$emit('showModal')" :author="user"/>
+    <h3>{{user?.uid}}</h3>
     <ul class="content-comments">
         <li v-for="(comment,i) in comments" :key="i"
         @click="show(i)">
@@ -42,7 +42,6 @@ import {onAuthStateChanged, auth} from '../assets/modulesJS/fireBaseAuth';
             }
         },
         methods: {
-            show(i){console.log(i)},
             getInfo(){
                     const postRef = ref(db, 'posts/' + this.$route.params.key)
                     onValue(postRef, snap => {

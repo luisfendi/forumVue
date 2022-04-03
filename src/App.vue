@@ -1,10 +1,14 @@
 <template>
   <Link class="links-home" :to="'/'"/>
   <Menu :list="list"/>
-  <router-view :key="$route.params.key"></router-view>
-    <Link class="profile-link" :to="'profil'" :title="'profile'"/>
+  <router-view :key="$route.params.key" @showModal="modalSignIn = true"></router-view>
+  <Link class="profile-link" :to="'profil'" :title="'profile'"/>
   <button @click="out" v-if="user">signOut</button>
   <Link :title="'войти'" :to="'signin'" v-if="!user"/>
+  <modal-sign-in 
+  v-if="modalSignIn" 
+  @modalClose="modalSignIn = false"
+  />
 </template>
 
 
@@ -20,6 +24,7 @@ import {computed} from 'vue';
         return {
           list: '',
           user: '',
+          modalSignIn: false,
         }
       },
       methods: {

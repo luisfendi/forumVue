@@ -17,11 +17,16 @@ export default {
     },
     methods: {
         send(){
-            sendComment(this.$route.params.key, {
+            if(this.author){
+                sendComment(this.$route.params.key, {
                 author: this.author?.displayName,
                 text: this.comment,
                 uid: this.author?.uid ,
-            })
+                })
+            } 
+            else {
+                this.$emit('signIn')
+            }
         }
     }
 }
