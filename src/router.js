@@ -20,14 +20,17 @@ const routes = [
 
 
 async function routing(){
-  let list = await getList();
-  list.forEach(el => {
-    routes.push({path: `/:key`, component: Post})
-  })
-    return VueRouter.createRouter({
-    history: VueRouter.createWebHashHistory(),
-    routes: routes, 
-  })
+    let list = await getList();
+    if(typeof list == 'string'){
+      return false
+    }
+    list.forEach(el => {
+      routes.push({path: `/:key`, component: Post})
+    })
+      return VueRouter.createRouter({
+      history: VueRouter.createWebHashHistory(),
+      routes: routes, 
+    })
 }
 
- export {routing}
+export {routing} 

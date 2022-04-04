@@ -12,12 +12,11 @@
                 class="links-page"  
                 :to="key(item)"
                 :key="key(item)"
-                :title="item[key(item)].name"
                 @closeMenu="closeBurger"
-                />
-                <Link :to="'signup'" :title="'регистрация'" @closeMenu="closeBurger"/>
-                <Link :to="'signin'" :title="'вход'" @closeMenu="closeBurger"/>
-                <Link :to="'create'" :title="'создать пост'" @closeMenu="closeBurger"/>
+                >{{item[key(item)].name}}</Link>
+                <Link :to="'signup'"  @closeMenu="closeBurger">регистрация</Link>
+                <Link :to="'signin'"  @closeMenu="closeBurger">вход</Link>
+                <Link :to="'create'"  @closeMenu="closeBurger">создать</Link>
             </ul>
         </Transition>
     </div>

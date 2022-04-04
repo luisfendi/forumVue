@@ -12,6 +12,7 @@ export default()=>{
         console.log("No data available");
       }
     }).catch((error) => {
+      return error.message
       console.error('----EROROROROROOROR----');
     }); 
 }
