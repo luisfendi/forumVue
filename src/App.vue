@@ -1,10 +1,10 @@
 <template>
-  <Link class="links-home" :to="'/'"/>
+  <Link class="link-home" :to="'/'">на главную</Link>
+  <Link class="link-signIn"  :to="'signin'" v-if="!user && $route.path != '/signin'">войти</Link>
+  <Link class="link-profile" v-if="user" :to="'profil'">профиль</Link>
   <Menu :list="list"/>
-  <router-view :key="$route.params.key" @showModal="modalSignIn = true"></router-view>
-  <Link class="profile-link" v-if="user" :to="'profil'" :title="'profile'"/>
+  <router-view :key="$route?.params.key" @showModal="modalSignIn = true"></router-view>
   <button @click="out" v-if="user">signOut</button>
-  <Link :title="'войти'" :to="'signin'" v-if="!user && $route.path != '/signin'"/>
   <modal-sign-in 
     v-if="modalSignIn" 
     @modalClose="modalSignIn = false"
@@ -16,8 +16,8 @@
 import Menu from './components/Menu.vue';
 import getList from './assets/modulesJS/getList';
 import {onAuthStateChanged, sign_Out, auth} from './assets/modulesJS/fireBaseAuth';
-
 import {computed} from 'vue';
+
   export default{
       data(){
         return {
@@ -40,10 +40,10 @@ import {computed} from 'vue';
       created(){
          this.isSigned()
       },
-      beforeMount(){
-                    getList().then(a => {
-                      this.list = a;
-                    });              
+      beforeMount(){    
+            getList().then(a => {
+              this.list = a;
+            });       
       },
       components: {
         Menu: Menu,
@@ -70,5 +70,38 @@ import {computed} from 'vue';
   font-weight: normal;
 
 }
+
+.link-home, .link-signIn, .link-profile {
+    position: sticky;
+    left: 48vw;
+    top: 1vh;
+    &::after{
+        content: '';
+        display: block;
+        width: 5vw;
+        height: 5vw;
+        background-image: url("./assets/icons/home.svg");
+        background-size:cover;
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translateX(110%);
+    }
+}
+
+.link-signIn {
+  left: 90%;
+  &::after{
+        background: green; 
+    }
+}
+
+.link-profile{
+  left: 90%;
+  &::after{
+        background: blue; 
+    }
+}
+
 
 </style>
