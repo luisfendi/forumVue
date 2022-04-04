@@ -9,14 +9,14 @@
         <Transition name="listEnter">
             <ul class="menu-burger--list links" v-if="burger">
                 <Link v-for="item in list"
-                class="links-page"  
+                class="link-post"  
                 :to="key(item)"
                 :key="key(item)"
                 @closeMenu="closeBurger"
                 >{{item[key(item)].name}}</Link>
-                <Link :to="'signup'"  @closeMenu="closeBurger">регистрация</Link>
-                <Link :to="'signin'"  @closeMenu="closeBurger">вход</Link>
-                <Link :to="'create'"  @closeMenu="closeBurger">создать</Link>
+                <Link :to="'signup'" class="link-signUp"  @closeMenu="closeBurger">регистрация</Link>
+                <Link :to="'signin'" class="link-signIn"  @closeMenu="closeBurger">вход</Link>
+                <Link :to="'create'" class="link-create"  @closeMenu="closeBurger">создать</Link>
             </ul>
         </Transition>
     </div>
@@ -58,7 +58,7 @@ export default{
     position: sticky;
     top: 0;
     left: 0;
-    width: 25%;
+    width: 35%;
     z-index: 5;
     &-burger{
         input {
@@ -127,23 +127,26 @@ export default{
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     margin-top: 6vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: baseline;
+           min-width: 135px;
+
     a {
        color: black;
        text-decoration: none;
        padding: 10% 5% 10% 5%;
+       padding-right: 0;
+       padding-left: 0;
        border-bottom: 1px solid black;
+       position: relative;
+       width: 100%;
+       @include pseudoClassMenuItem;
        &:last-child{
            border: none;
        }
-    }
-
-     .links-page{
-        position: relative;
-        @include pseudoClassMenuItem;
-          &::after{
-              background: url("../assets/icons/person.svg") 
-        } 
-    }  
+    } 
 }
 
 .listEnter-enter-active{

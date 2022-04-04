@@ -6,3 +6,51 @@
     padding: 0;
     list-style: none;
 }
+
+.link-home{
+    &::after{
+        background-image: url("./assets/icons/home.svg");
+    }
+}
+
+.link-signIn{
+    &::after{
+        background-image: url("./assets/icons/login.svg");
+    }
+}
+
+.link-logout{
+    &::after{
+        background-image: url("./assets/icons/logout.svg");
+    }
+}
+
+.links {
+    .link-signIn{
+        &::after{
+            background-image: url("../assets/icons/login.svg");
+        }
+    }
+}
+
+.link-profil{
+    &::after{
+        background-image: url("./assets/icons/user.svg");
+    }
+}
+
+.link-signUp {
+    &::after{
+        background-image: url("../assets/icons/signUp.svg");
+    }
+}
+.link-create {
+    &::after{
+        background-image: url("../assets/icons/create.svg");
+    }
+}
+.link-post {
+    &::after{
+        background-image: url("../assets/icons/person.svg");
+    }
+}

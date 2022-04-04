@@ -1,5 +1,10 @@
 <template>
-        <router-link class="link" @click="closeBurger" :key="key" :to="`/${to}`"><span><slot></slot></span></router-link>
+        <router-link class="link" 
+        @click="closeBurger" 
+        :key="key" 
+        :to="`/${to}`">
+                <slot></slot>
+        </router-link>
 </template>
 
 <script>
@@ -14,13 +19,7 @@ export default {
 </script>
 
 <style lang="scss">
-    .profile-link {
-        text-decoration: none;
-        color: black;
-        position: absolute;
-        top: 10%;
-        right: 10%;
-}
-
-
+    .link-signUp{
+        color:red;
+    }
 </style>
