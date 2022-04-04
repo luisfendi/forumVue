@@ -5,6 +5,7 @@ import Post from './components/Post.vue'
 import Create from './components/Create.vue'
 import signUpForm from './components/signUpForm.vue'
 import signInForm from './components/signInForm.vue'
+import Profile from './components/Profile.vue'
 import getList from './assets/modulesJS/getList'
 
 
@@ -14,6 +15,7 @@ const routes = [
     {path: '/create', component: Create},
     {path: '/signup', component: signUpForm},    
     {path: '/signin', component: signInForm},    
+    {path: '/profil', component: Profile},    
   ]
 
 

@@ -3,12 +3,17 @@ import {
    createUserWithEmailAndPassword,
    signInWithEmailAndPassword,
    onAuthStateChanged,
-   updateProfile
+   updateProfile,
+   signOut,
    } from "firebase/auth";
 
 import {app} from './fireBase';
 
 const auth = getAuth(app);
+async function getPhoto(){
+  let photo = await fetch("https://loremflickr.com/320/240?random=1")
+  return photo
+}
 
 function createUser(email, password, displayName){
     createUserWithEmailAndPassword(auth, email, password)
@@ -16,6 +21,7 @@ function createUser(email, password, displayName){
         const user = userCredential.user;
         updateProfile(user, {
           displayName,
+          photoURL: 'https://loremflickr.com/320/240?random=1'
         })
     })
     .catch((error) => {
@@ -47,8 +53,13 @@ function signIn(email, pass){
 }
 
 
+function sign_Out(){
+  console.log('signing out')
+  return signOut(auth)
+}
 
-// function detectUser(){
-//   return auth.currentUser.displayName;
-// }
-export {createUser, signIn, authState, onAuthStateChanged, auth}
+function getUser(){
+  return auth.currentUser;
+}
+
+export {createUser, getUser, signIn, sign_Out, authState, onAuthStateChanged, auth}

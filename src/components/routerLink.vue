@@ -13,6 +13,12 @@ export default {
 }
 </script>
 
-<style>
-    
+<style lang="scss">
+    .profile-link {
+        text-decoration: none;
+        color: black;
+        position: absolute;
+        top: 10%;
+        right: 10%;
+}
 </style>
