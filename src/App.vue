@@ -1,10 +1,13 @@
 <template>
-  <Link class="link-home" :to="'/'"><span>на главную</span></Link>
-  <Link class="link-signIn"  :to="'signin'" v-if="!user && $route.path != '/signin'"><span>войти</span></Link>
-  <Link class="link-profile" v-if="user" :to="'profil'"><span>профиль</span></Link>
-  <button @click="out" class="link-logout" v-if="user"><span>signOut</span></button>
-  <Menu :list="list"/>
-
+  <header class="header">
+    <div class="header-links">
+      <Link class="link-home" :to="'/'"><span>на главную</span></Link>
+      <Link class="link-signIn"  :to="'signin'" v-if="!user && $route.path != '/signin'"><span>войти</span></Link>
+      <Link class="link-profile" v-if="user" :to="'profil'"><span>профиль</span></Link>
+      <button @click="out" class="link-logout" v-if="user"><span>signOut</span></button>
+    </div>
+    <Menu :list="list"/>
+  </header>
   <router-view :key="$route?.params.key" @showModal="modalSignIn = true"></router-view>
   <modal-sign-in 
     v-if="modalSignIn" 
@@ -64,28 +67,43 @@ import {computed} from 'vue';
 @import './assets/scss/general.scss';
 
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
 
+#app {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-weight: normal;
+  }
+
+.header {
+    width: 100%;
+    // position: sticky;
+    // top: 0;
+    // left: 0;
+    background:red;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 5%;
 }
+
+.header-links{
+  order: 2;
+  display: flex;
+  justify-content: flex-end;
+  width: 50%;
+}
+
 .link-home, .link-signIn, .link-profile, .link-logout {
-    position: sticky;
+    min-width: 10vw;
     z-index: 5;
-    left: 48vw;
-    top: 1vh;
     span {
       display: none;
     }
     @include pseudoClassMenuItem;
     &::after{
-      transform: translateX(110%);
+      transform: translateX(50%);
     }
 }
 
-.link-signIn, .link-profile, .link-logout {
-  left: 90%; 
-}
+
 </style>
