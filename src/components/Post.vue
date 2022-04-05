@@ -1,6 +1,6 @@
 <template>
 <div class="content">
-    <img :src="info.img" class="content-img" @click="show('working')">
+    <img :src="info.img" class="content-img">
     <h3 class="content-name">{{info.name}}</h3>
     <span class="conetent-type">{{info.type}}</span>
     <Form @signIn="$emit('showModal')" :author="user"/>

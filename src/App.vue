@@ -1,10 +1,11 @@
 <template>
-  <Link class="link-home" :to="'/'">на главную</Link>
-  <Link class="link-signIn"  :to="'signin'" v-if="!user && $route.path != '/signin'">войти</Link>
-  <Link class="link-profile" v-if="user" :to="'profil'">профиль</Link>
+  <Link class="link-home" :to="'/'"><span>на главную</span></Link>
+  <Link class="link-signIn"  :to="'signin'" v-if="!user && $route.path != '/signin'"><span>войти</span></Link>
+  <Link class="link-profile" v-if="user" :to="'profil'"><span>профиль</span></Link>
+  <button @click="out" class="link-logout" v-if="user"><span>signOut</span></button>
   <Menu :list="list"/>
+
   <router-view :key="$route?.params.key" @showModal="modalSignIn = true"></router-view>
-  <button @click="out" v-if="user">signOut</button>
   <modal-sign-in 
     v-if="modalSignIn" 
     @modalClose="modalSignIn = false"
@@ -70,38 +71,21 @@ import {computed} from 'vue';
   font-weight: normal;
 
 }
-
-.link-home, .link-signIn, .link-profile {
+.link-home, .link-signIn, .link-profile, .link-logout {
     position: sticky;
+    z-index: 5;
     left: 48vw;
     top: 1vh;
+    span {
+      display: none;
+    }
+    @include pseudoClassMenuItem;
     &::after{
-        content: '';
-        display: block;
-        width: 5vw;
-        height: 5vw;
-        background-image: url("./assets/icons/home.svg");
-        background-size:cover;
-        position: absolute;
-        top: 0;
-        right: 0;
-        transform: translateX(110%);
+      transform: translateX(110%);
     }
 }
 
-.link-signIn {
-  left: 90%;
-  &::after{
-        background: green; 
-    }
+.link-signIn, .link-profile, .link-logout {
+  left: 90%; 
 }
-
-.link-profile{
-  left: 90%;
-  &::after{
-        background: blue; 
-    }
-}
-
-
 </style>
