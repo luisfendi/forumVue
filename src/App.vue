@@ -77,10 +77,6 @@ import {computed} from 'vue';
 
 .header {
     width: 100%;
-    // position: sticky;
-    // top: 0;
-    // left: 0;
-    background:red;
     display: flex;
     justify-content: space-between;
     padding-top: 5%;
@@ -95,7 +91,7 @@ import {computed} from 'vue';
 
 .link-home, .link-signIn, .link-profile, .link-logout {
     min-width: 10vw;
-    z-index: 5;
+    z-index: 4;
     span {
       display: none;
     }

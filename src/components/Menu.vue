@@ -54,7 +54,6 @@ export default{
 
 
 .menu {
-    background: yellow;
     min-width: 10%;
     z-index: 5;
     order: 1;
@@ -115,9 +114,9 @@ export default{
 }
 
 .links {
-    background: white;
+    background:white;
     width: 100%;
-    z-index: 3;
+    z-index: 6;
     position: absolute;
     border: 2px solid black;
     border-radius: 10px;
@@ -133,14 +132,16 @@ export default{
 
     a {
        color: black;
+       box-sizing: border-box;
        text-decoration: none;
        padding: 10% 5% 10% 5%;
-       padding-right: 0;
-       padding-left: 0;
        border-bottom: 1px solid black;
        position: relative;
        width: 100%;
        @include pseudoClassMenuItem;
+       &:after{
+           float:right;
+       }
        &:last-child{
            border: none;
        }
