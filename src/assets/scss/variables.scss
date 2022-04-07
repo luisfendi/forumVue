@@ -1,5 +1,6 @@
 $green: rgb(38, 143, 38);
 $orange: rgb(240, 166, 30);
+$blue: rgb(30, 163, 240);
 
 @mixin pseudoClassMenuItem {
     &::after{
@@ -8,9 +9,11 @@ $orange: rgb(240, 166, 30);
         width: 5vw;
         height: 5vw;
         background-size:cover;
-        position: absolute;
-        top: 0;
-        right: 5vw;
-        top: 2.5vw;
     }
+}
+
+@mixin button {
+    border-radius: 5px;
+    border: 1px solid white;
+    color: white;
 }

@@ -1,3 +1,4 @@
+@import "./variables.scss";
 
 
 
@@ -13,6 +14,14 @@
     }
 }
 
+.links {
+    .link-signIn{
+        &::after{
+            background-image: url("../assets/icons/login.svg");
+        }
+    }
+}
+
 .link-signIn{
     &::after{
         background-image: url("./assets/icons/login.svg");
@@ -25,15 +34,7 @@
     }
 }
 
-.links {
-    .link-signIn{
-        &::after{
-            background-image: url("../assets/icons/login.svg");
-        }
-    }
-}
-
-.link-profil{
+.link-profile{
     &::after{
         background-image: url("./assets/icons/user.svg");
     }
@@ -54,3 +55,6 @@
         background-image: url("../assets/icons/person.svg");
     }
 }
+
+
+

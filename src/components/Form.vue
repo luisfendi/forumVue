@@ -1,13 +1,14 @@
 <template>
      <form action="#" class="form">
         <input type="text" v-model="comment" class="form-comment" placeholder="your comment">
-        <button class="from-button"
+        <button class="form-button"
         @click.prevent="send">оставить коммент</button>
     </form>
 </template>
 
 <script>
-import sendComment from "../assets/modulesJS/sendComment"
+import sendComment from "../assets/modulesJS/sendComment";
+
 export default {
     props: ['author'],
     data(){
@@ -32,6 +33,17 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+@import '../assets/scss/general.scss';
 
+    .form{
+        display:flex;
+        &-comment{
+            border: 1px solid rgba(0,0,0, 0.2)
+        }
+        &-button{
+            @include button;
+            background: $blue;
+        }
+    }
 </style>

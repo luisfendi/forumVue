@@ -32,22 +32,21 @@ export default {
             return new Promise((res, rej )=> {
                 console.log('promise')
                 signIn(this.email, this.password)
-                res('a')
             })
             .then((a)=>{
-                this.isSigned(a)
+                this.isSigned()
             })
         },
-        isSigned(res){
+        isSigned(){
                     onAuthStateChanged(auth, (user) => {
-                    console.log('state change' + res)
+                    console.log('state change')
                     if (user) {
                         this.user = user.displayName
                         console.log(user.displayName)
                         } 
                         else {
                         this.user = null
-                    }
+                        }
                     })
         }
     },

@@ -13,6 +13,5 @@ export default()=>{
       }
     }).catch((error) => {
       return error.message
-      console.error('----EROROROROROOROR----');
     }); 
 }

@@ -1,27 +1,26 @@
 <template>
     <div class="menu">
-    <div class="menu-burger">
-        <input type="checkbox" 
-        class="menu-burger--input" 
-        id="checkbox"
-        v-model="burger">
-        <label for="checkbox"><span></span></label>
-        <Transition name="listEnter">
-            <ul class="menu-burger--list links" v-if="burger">
-                <Link v-for="item in list"
-                class="link-post"  
-                :to="key(item)"
+        <div class="menu-burger">
+            <input type="checkbox" 
+            class="menu-burger--input" 
+            id="checkbox"
+            v-model="burger">
+            <label for="checkbox"><span></span></label>
+            <Transition name="listEnter">
+                <ul class="menu-burger--list links" v-if="burger">
+                    <Link v-for="item in list"
+                    class="link-post"  
+                    :to="key(item)"
                 :key="key(item)"
-                @closeMenu="closeBurger"
-                >{{item[key(item)].name}}</Link>
-                <Link :to="'signup'" class="link-signUp"  @closeMenu="closeBurger">регистрация</Link>
-                <Link :to="'signin'" class="link-signIn"  @closeMenu="closeBurger">вход</Link>
-                <Link :to="'create'" class="link-create"  @closeMenu="closeBurger">создать</Link>
-            </ul>
-        </Transition>
-    </div>
+                    @closeMenu="closeBurger"
+                    >{{item[key(item)].name}}</Link>
+                    <Link :to="'signup'" class="link-signUp"  @closeMenu="closeBurger">регистрация</Link>
+                    <Link :to="'signin'" class="link-signIn"  @closeMenu="closeBurger">вход</Link>
+                    <Link :to="'create'" class="link-create"  @closeMenu="closeBurger">создать</Link>
+                </ul>
+            </Transition>
+        </div>
    </div>
-    
 </template>
 
 <script>
@@ -55,11 +54,9 @@ export default{
 
 
 .menu {
-    position: sticky;
-    top: 0;
-    left: 0;
-    width: 35%;
+    min-width: 10%;
     z-index: 5;
+    order: 1;
     &-burger{
         input {
             display:none;
@@ -117,9 +114,9 @@ export default{
 }
 
 .links {
-    background: white;
+    background:white;
     width: 100%;
-    z-index: 3;
+    z-index: 6;
     position: absolute;
     border: 2px solid black;
     border-radius: 10px;
@@ -131,18 +128,20 @@ export default{
     flex-direction: column;
     align-items: center;
     justify-content: baseline;
-           min-width: 135px;
+    min-width: 135px;
 
     a {
        color: black;
+       box-sizing: border-box;
        text-decoration: none;
        padding: 10% 5% 10% 5%;
-       padding-right: 0;
-       padding-left: 0;
        border-bottom: 1px solid black;
        position: relative;
        width: 100%;
        @include pseudoClassMenuItem;
+       &:after{
+           float:right;
+       }
        &:last-child{
            border: none;
        }

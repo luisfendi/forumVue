@@ -1,10 +1,14 @@
 <template>
-  <Link class="link-home" :to="'/'"><span>на главную</span></Link>
-  <Link class="link-signIn"  :to="'signin'" v-if="!user && $route.path != '/signin'"><span>войти</span></Link>
-  <Link class="link-profile" v-if="user" :to="'profil'"><span>профиль</span></Link>
-  <button @click="out" class="link-logout" v-if="user"><span>signOut</span></button>
-  <Menu :list="list"/>
-
+  <h2>{{list}}</h2>
+  <header class="header">
+    <div class="header-links">
+      <Link class="link-home" :to="'/'"><span>на главную</span></Link>
+      <Link  class="link-signIn"  :to="'signin'" v-if="!user && $route.path != '/signin'"><span>войти</span></Link>
+      <Link  class="link-profile" v-if="user" :to="'profil'"><span>профиль</span></Link>
+      <button @click="out" class="link-logout" v-if="user"><span>signOut</span></button>
+    </div>
+    <Menu :list="list"/>
+  </header>
   <router-view :key="$route?.params.key" @showModal="modalSignIn = true"></router-view>
   <modal-sign-in 
     v-if="modalSignIn" 
@@ -14,6 +18,7 @@
 
 
 <script>
+
 import Menu from './components/Menu.vue';
 import getList from './assets/modulesJS/getList';
 import {onAuthStateChanged, sign_Out, auth} from './assets/modulesJS/fireBaseAuth';
@@ -30,9 +35,9 @@ import {computed} from 'vue';
       
       methods: {
         isSigned(res){
-                    onAuthStateChanged(auth, (user) => {
-                    this.user = user
-                    })
+            onAuthStateChanged(auth, (user) => {
+            this.user = user
+            })
         },
         out(){
           return sign_Out()
@@ -41,10 +46,14 @@ import {computed} from 'vue';
       created(){
          this.isSigned()
       },
-      beforeMount(){    
-            getList().then(a => {
-              this.list = a;
-            });       
+      beforeMount(){ 
+              getList().then(a => {
+                 if(typeof a == 'string'){
+                   return false
+                 }else{
+                   this.list = a
+                 }
+              });    
       },
       components: {
         Menu: Menu,
@@ -65,27 +74,37 @@ import {computed} from 'vue';
 
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-weight: normal;
+  }
 
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 5%;
 }
+
+.header-links{
+  order: 2;
+  display: flex;
+  justify-content: flex-end;
+  width: 50%;
+}
+
 .link-home, .link-signIn, .link-profile, .link-logout {
-    position: sticky;
-    z-index: 5;
-    left: 48vw;
-    top: 1vh;
+    min-width: 10vw;
+    z-index: 4;
     span {
       display: none;
     }
     @include pseudoClassMenuItem;
     &::after{
-      transform: translateX(110%);
+      transform: translateX(50%);
     }
 }
 
-.link-signIn, .link-profile, .link-logout {
-  left: 90%; 
-}
+
 </style>
