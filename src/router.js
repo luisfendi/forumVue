@@ -11,26 +11,32 @@ import getList from './assets/modulesJS/getList'
 
 
 const routes = [
-    { path: '/', component: Home },
+    {path: '/', component: Home },
     {path: '/create', component: Create},
     {path: '/signup', component: signUpForm},    
     {path: '/signin', component: signInForm},    
     {path: '/profil', component: Profile},    
-  ]
-
+]
 
 async function routing(){
     let list = await getList();
     if(typeof list == 'string'){
-      return false
-    }
-    list.forEach(el => {
-      routes.push({path: `/:key`, component: Post})
-    })
+      console.log('нет соединения с сервером:' + list )
       return VueRouter.createRouter({
-      history: VueRouter.createWebHashHistory(),
-      routes: routes, 
-    })
+        history: VueRouter.createWebHashHistory(),
+        routes: routes, 
+      })
+    }
+    else {
+      console.log(list)
+      list.forEach(el => {
+        routes.push({path: `/:key`, component: Post})
+      })
+      return VueRouter.createRouter({
+        history: VueRouter.createWebHashHistory(),
+        routes: routes, 
+      })
+    }  
 }
 
 export {routing} 

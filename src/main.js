@@ -1,4 +1,4 @@
-import { createApp } from 'vue'
+import {createApp} from 'vue'
 import App from './App.vue'
 import {routing} from './router.js'
   
@@ -21,5 +21,6 @@ else{
     console.log('смотри настройки роутера и мэйн js по случаю неиспраности соединения')
     app.mount('#app');
 }
+
 
 

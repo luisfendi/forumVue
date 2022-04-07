@@ -37,6 +37,7 @@ function signIn(email, pass){
   })
   .catch((error) => {
     const errorMessage = error.message;
+    return errorMessage
   });
 }
 

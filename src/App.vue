@@ -1,9 +1,10 @@
 <template>
+  <h2>{{list}}</h2>
   <header class="header">
     <div class="header-links">
       <Link class="link-home" :to="'/'"><span>на главную</span></Link>
-      <Link class="link-signIn"  :to="'signin'" v-if="!user && $route.path != '/signin'"><span>войти</span></Link>
-      <Link class="link-profile" v-if="user" :to="'profil'"><span>профиль</span></Link>
+      <Link  class="link-signIn"  :to="'signin'" v-if="!user && $route.path != '/signin'"><span>войти</span></Link>
+      <Link  class="link-profile" v-if="user" :to="'profil'"><span>профиль</span></Link>
       <button @click="out" class="link-logout" v-if="user"><span>signOut</span></button>
     </div>
     <Menu :list="list"/>
@@ -17,6 +18,7 @@
 
 
 <script>
+
 import Menu from './components/Menu.vue';
 import getList from './assets/modulesJS/getList';
 import {onAuthStateChanged, sign_Out, auth} from './assets/modulesJS/fireBaseAuth';
@@ -33,9 +35,9 @@ import {computed} from 'vue';
       
       methods: {
         isSigned(res){
-                    onAuthStateChanged(auth, (user) => {
-                    this.user = user
-                    })
+            onAuthStateChanged(auth, (user) => {
+            this.user = user
+            })
         },
         out(){
           return sign_Out()
@@ -44,10 +46,14 @@ import {computed} from 'vue';
       created(){
          this.isSigned()
       },
-      beforeMount(){    
-            getList().then(a => {
-              this.list = a;
-            });       
+      beforeMount(){ 
+              getList().then(a => {
+                 if(typeof a == 'string'){
+                   return false
+                 }else{
+                   this.list = a
+                 }
+              });    
       },
       components: {
         Menu: Menu,
@@ -65,7 +71,6 @@ import {computed} from 'vue';
 <style lang="scss" scoped>
 @import './assets/base.css';
 @import './assets/scss/general.scss';
-
 
 
 #app {
