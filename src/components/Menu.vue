@@ -11,12 +11,12 @@
                     <Link v-for="item in list"
                     class="link-post"  
                     :to="key(item)"
-                :key="key(item)"
+                    :key="key(item)"
                     @closeMenu="closeBurger"
                     >{{item[key(item)].name}}</Link>
-                    <Link :to="'signup'" class="link-signUp"  @closeMenu="closeBurger">регистрация</Link>
-                    <Link :to="'signin'" class="link-signIn"  @closeMenu="closeBurger">вход</Link>
-                    <Link :to="'create'" class="link-create"  @closeMenu="closeBurger">создать</Link>
+                    <Link :to="'signup'" class="link-signUp">регистрация</Link>
+                    <Link :to="'signin'" class="link-signIn">вход</Link>
+                    <Link :to="'create'" class="link-create">создать</Link>
                 </ul>
             </Transition>
         </div>
@@ -24,8 +24,10 @@
 </template>
 
 <script>
-import key from "../assets/modulesJS/getKeyInObject"
-import Link from './routerLink.vue'
+import key from "../assets/modulesJS/getKeyInObject";
+import Link from './routerLink.vue';
+import {emitter} from '../assets/modulesJS/tinyEmiter';
+
 export default{
     props:['list'],
     data(){
@@ -41,6 +43,9 @@ export default{
         key(item){
             return key(item)[0]
         }
+    },
+    mounted(){
+        emitter.on('closeMenu', this.closeBurger)
     },
     components: {
         Link: Link,
