@@ -23,10 +23,19 @@ export default {
                 author: this.author?.displayName,
                 text: this.comment,
                 uid: this.author?.uid ,
+                time: this.getTime()
                 })
             } 
             else {
                 this.$emit('signIn')
+            }
+        },
+        getTime(){
+            let date = new Date();
+            let week = ["вс", "пн", "вт", "ср", "чт", "пт", "сб"]
+            return {day: week[date.getDay()],
+                    hours: date.getHours() < 10 ? `0${date.getHours()}` : date.getHours(),
+                    min: date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes(),
             }
         }
     }

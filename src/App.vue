@@ -1,8 +1,7 @@
 <template>
-  <h2>{{list}}</h2>
   <header class="header">
     <div class="header-links">
-      <Link class="link-home" :to="'/'"><span>на главную</span></Link>
+      <Link  class="link-home" :to="'/'"><span>на главную</span></Link>
       <Link  class="link-signIn"  :to="'signin'" v-if="!user && $route.path != '/signin'"><span>войти</span></Link>
       <Link  class="link-profile" v-if="user" :to="'profil'"><span>профиль</span></Link>
       <button @click="out" class="link-logout" v-if="user"><span>signOut</span></button>
@@ -32,7 +31,6 @@ import {computed} from 'vue';
           modalSignIn: false,
         }
       },
-      
       methods: {
         isSigned(res){
             onAuthStateChanged(auth, (user) => {

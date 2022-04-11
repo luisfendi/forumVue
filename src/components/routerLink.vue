@@ -8,13 +8,14 @@
 </template>
 
 <script>
+import {emitter} from '../assets/modulesJS/tinyEmiter'
 export default {
     props: ['title', 'to', 'key'],
     methods: {
         closeBurger(){
-            this.$emit('closeMenu')
+            emitter.emit('closeMenu')
         }
-    }
+    },
 }
 </script>
 

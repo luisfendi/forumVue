@@ -5,13 +5,16 @@
     <span class="conetent-type">{{info.type}}</span>
     <Form @signIn="$emit('showModal')" :author="user"/>
     <h3>{{user?.uid}}</h3>
-    <ul class="content-comments">
+    <!-- <ul class="content-comments"> -->
+    <transition-group class="content-comments" tag="ul" name="list">
         <li v-for="(comment,i) in comments" :key="i"
         @click="show(i)">
             <h4>{{comment.author}}:</h4>
             <p>{{comment.text}}</p>
+            <p>{{comment.time?.day}} {{comment.time?.hours}}:{{comment.time?.min}}</p>
         </li>
-    </ul>
+    </transition-group>
+    <!-- </ul> -->
 </div>
 </template>
 
@@ -78,6 +81,7 @@ import {onAuthStateChanged, auth} from '../assets/modulesJS/fireBaseAuth';
                 border-right:none;
                 border-top: none;
                 display:flex;
+                justify-content: space-between;
                 &:first-child{
                     border-top: 1px solid rgba(122, 122, 122, 0.5);                }
                 h4 {
@@ -92,4 +96,18 @@ import {onAuthStateChanged, auth} from '../assets/modulesJS/fireBaseAuth';
      width: 200px;
      height: 200px;
  }
+.list-move, 
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(-300px);
+}
+
+.list-leave-active {
+  position: absolute;
+}
 </style>
