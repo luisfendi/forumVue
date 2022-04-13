@@ -83,7 +83,7 @@ import {onAuthStateChanged, auth} from '../assets/modulesJS/fireBaseAuth';
                 display:flex;
                 justify-content: space-between;
                 &:first-child{
-                    border-top: 1px solid rgba(122, 122, 122, 0.5);                }
+                    border-top: none;                }
                 h4 {
                     width: 20%;
                     margin-right: 10%;
