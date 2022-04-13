@@ -56,7 +56,7 @@ export default {
         &-button{
             @include button;
             min-width:35px;
-            background: $blue;
+            
             display: flex;
             &--text {
                 display: none;

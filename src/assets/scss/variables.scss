@@ -13,6 +13,7 @@ $blue: rgb(88, 123, 238);
 }
 
 @mixin button {
+    width: auto;
     border-radius: 5px;
     border: 1px solid $blue;
     color: white;
@@ -20,6 +21,7 @@ $blue: rgb(88, 123, 238);
     min-width: 7vw;
     text-align: center;
     word-wrap: break-word;
+    background: $blue;
 }
 
 @mixin input {

@@ -61,11 +61,15 @@ export default {
         align-items:center;
         padding-top: 10%;
         &--description, &--author, &--type {
+            @include input;
             width: 100%;
             margin-bottom: 10%;
         }
         &--description{
             min-height: 100px;
+        }
+        button {
+            @include button;
         }
     }
 }
