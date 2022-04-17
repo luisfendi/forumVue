@@ -58,7 +58,7 @@ import {computed} from 'vue';
       },
       provide(){
         return {
-          list: computed(() => this.list)
+          list: computed(() => this.list),
         }
       }
       

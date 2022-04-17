@@ -31,13 +31,19 @@ function createUser(email, password, displayName){
 }
 
 function signIn(email, pass){
-  signInWithEmailAndPassword(auth, email, pass)
+  return signInWithEmailAndPassword(auth, email, pass)
   .then((userCredential) => {
     const user = userCredential.user;
+    return {
+      status: true,
+      user,
+    }
   })
   .catch((error) => {
-    const errorMessage = error.message;
-    return errorMessage
+    return {
+      status: false,
+      error,
+    }
   });
 }
 

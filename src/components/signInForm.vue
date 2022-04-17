@@ -1,19 +1,23 @@
 <template>
 <div class="wrapper">
-  <form class="signInForm">
+    <form class="signInForm" v-if="!user">
       <input type="email" placeholder="email" v-model="email">
       <input type="password" placeholder="password" v-model="password">
       <button type="submit" 
       @click="signIn()">вход</button>
-      <h5>sign in{{user}}</h5>
-      <h1>{{status}}</h1>
-  </form>
+    </form>
+    <div class="signedBlock" v-if="user">
+        <p>вход осуществлен по пользователем {{user}}</p>
+        <button type="submit" @click="out" 
+            >выйти</button>
+    </div>
+    <Modal tag="h4" v-if="modal" :msg="modal"/>
 </div>
 </template>
 
 <script>
-import {signIn} from '../assets/modulesJS/fireBaseAuth'
-import {auth, onAuthStateChanged} from '../assets/modulesJS/fireBaseAuth'
+import {signIn, auth, onAuthStateChanged, sign_Out} from '../assets/modulesJS/fireBaseAuth'
+import modalMessage from './modalMessage.vue'
 
 export default {
     data(){
@@ -22,33 +26,42 @@ export default {
             name: '',
             password: '',
             user: '',
+            modal: false,
         }
     },
-    computed: {
-        status(){
-            return this.isSigned()
-        }
+    created(){
+        this.isSigned();
     },
     methods:{
         signIn(){
-            return new Promise((res, rej )=> {
-                signIn(this.email, this.password)
-            })
-            .then((a)=>{
-                this.isSigned()
+            signIn(this.email, this.password)
+            .then(res => {
+                if(res.status){
+                    this.$router.push('/');
+                }
+                else{
+                    this.modal = res.error.message
+                }
             })
         },
         isSigned(){
                     onAuthStateChanged(auth, (user) => {
                     if (user) {
-                        this.user = user.displayName
+                        this.user = user.displayName;
                         } 
                         else {
                         this.user = null
                         }
                     })
-        }
+        },
+        out(){
+            return sign_Out()
+        },
+        
     },
+    components: {
+        Modal: modalMessage,
+    }
 }
 </script>
 
@@ -60,7 +73,7 @@ export default {
     display:flex;
     flex-direction:column;
     align-items:center;
-    .signInForm {
+    .signInForm, .signedBlock {
             width: 50%; 
             display:flex;
             flex-direction:column;
