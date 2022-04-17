@@ -6,7 +6,9 @@
             id="checkbox"
             v-model="burger">
             <label for="checkbox"><span></span></label>
-            <Transition name="listEnter">
+            
+        </div>
+        <Transition name="listEnter">
                 <ul class="menu-burger--list links" v-if="burger">
                     <Link v-for="item in list"
                     class="link-post"  
@@ -18,8 +20,7 @@
                     <Link :to="'signin'" class="link-signIn">вход</Link>
                     <Link :to="'create'" class="link-create">создать</Link>
                 </ul>
-            </Transition>
-        </div>
+        </Transition>
    </div>
 </template>
 
@@ -38,7 +39,7 @@ export default{
     },
     methods: {
         closeBurger(){
-            this.burger = !this.burger
+            this.burger = false
         },
         key(item){
             return key(item)[0]
@@ -63,6 +64,7 @@ export default{
     z-index: 5;
     order: 1;
     &-burger{
+        transform: translateX(50%);
         input {
             display:none;
             &:checked~label{

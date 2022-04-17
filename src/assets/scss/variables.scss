@@ -1,6 +1,6 @@
 $green: rgb(38, 143, 38);
 $orange: rgb(240, 166, 30);
-$blue: rgb(30, 163, 240);
+$blue: rgb(88, 123, 238);
 
 @mixin pseudoClassMenuItem {
     &::after{
@@ -13,7 +13,23 @@ $blue: rgb(30, 163, 240);
 }
 
 @mixin button {
+    width: auto;
     border-radius: 5px;
-    border: 1px solid white;
+    border: 1px solid $blue;
     color: white;
+    padding: 3% 5% 3% 5%;
+    min-width: 7vw;
+    text-align: center;
+    word-wrap: break-word;
+    background: $blue;
+}
+
+@mixin input {
+    border-radius: 5px;
+    border: 1px solid $blue;
+    color: white;
+    padding: 3% 5% 3% 5%;
+    min-width: 10vw;
+    text-align: left;
+    word-wrap: break-word;
 }

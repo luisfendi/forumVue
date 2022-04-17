@@ -1,5 +1,6 @@
 <template>
-  <form>
+<div class="wrapper">
+  <form class="signInForm">
       <input type="email" placeholder="email" v-model="email">
       <input type="password" placeholder="password" v-model="password">
       <button type="submit" 
@@ -7,6 +8,7 @@
       <h5>sign in{{user}}</h5>
       <h1>{{status}}</h1>
   </form>
+</div>
 </template>
 
 <script>
@@ -30,7 +32,6 @@ export default {
     methods:{
         signIn(){
             return new Promise((res, rej )=> {
-                console.log('promise')
                 signIn(this.email, this.password)
             })
             .then((a)=>{
@@ -39,10 +40,8 @@ export default {
         },
         isSigned(){
                     onAuthStateChanged(auth, (user) => {
-                    console.log('state change')
                     if (user) {
                         this.user = user.displayName
-                        console.log(user.displayName)
                         } 
                         else {
                         this.user = null
@@ -53,6 +52,28 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+@import '../assets/base.scss';
+@import '../assets/scss/general.scss';
+.wrapper{
+    width: 100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    .signInForm {
+            width: 50%; 
+            display:flex;
+            flex-direction:column;
+            align-items:center;
 
+            input {
+                @include input;
+                margin-bottom: 5%;
+            }
+            button {
+                @include button;
+            }
+        }
+}
+    
 </style>

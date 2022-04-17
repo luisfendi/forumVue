@@ -1,11 +1,11 @@
 <template>
   <header class="header">
-    <div class="header-links">
-      <Link  class="link-home" :to="'/'"><span>на главную</span></Link>
-      <Link  class="link-signIn"  :to="'signin'" v-if="!user && $route.path != '/signin'"><span>войти</span></Link>
-      <Link  class="link-profile" v-if="user" :to="'profil'"><span>профиль</span></Link>
-      <button @click="out" class="link-logout" v-if="user"><span>signOut</span></button>
-    </div>
+      <div class="header-links">
+        <Link  class="link-home" :to="'/'"><span>на главную</span></Link>
+        <Link  class="link-signIn"  :to="'signin'" v-if="!user && $route.path != '/signin'"><span>войти</span></Link>
+        <Link  class="link-profile" v-if="user" :to="'profil'"><span>профиль</span></Link>
+        <button @click="out" class="link-logout" v-if="user"><span>signOut</span></button>
+      </div>
     <Menu :list="list"/>
   </header>
   <router-view :key="$route?.params.key" @showModal="modalSignIn = true"></router-view>
@@ -82,7 +82,8 @@ import {computed} from 'vue';
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding-top: 5%;
+    padding: 5% 7% 5% 0%;
+    align-items:center;
 }
 
 .header-links{
@@ -100,7 +101,7 @@ import {computed} from 'vue';
     }
     @include pseudoClassMenuItem;
     &::after{
-      transform: translateX(50%);
+      transform: translateX(100%);
     }
 }
 

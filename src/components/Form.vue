@@ -2,7 +2,10 @@
      <form action="#" class="form">
         <input type="text" v-model="comment" class="form-comment" placeholder="your comment">
         <button class="form-button"
-        @click.prevent="send">оставить коммент</button>
+        @click.prevent="send">
+        <span class="form-button--text">оставить коммент</span>
+        <span class="form-button--icon"></span>
+        </button>
     </form>
 </template>
 
@@ -48,11 +51,33 @@ export default {
     .form{
         display:flex;
         &-comment{
-            border: 1px solid rgba(0,0,0, 0.2)
+            @include input;
         }
         &-button{
             @include button;
-            background: $blue;
+            min-width:35px;
+            
+            display: flex;
+            &--text {
+                display: none;
+            }
+            &--icon{
+                position:relative;
+                min-width: 4vw;
+                height: 4vw;
+                display: flex;
+                justify-content: center;
+                align-items:center;
+                @include pseudoClassMenuItem;
+                &::after{
+                    background-image: url('../assets/icons/send.svg');
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    width: 100%;
+                    height: 100%;
+                    background-position: center;
+                }
+            }
         }
     }
 </style>
