@@ -11,19 +11,24 @@
         <button type="submit" @click="out" 
             >выйти</button>
     </div>
-    <Modal tag="h4" v-if="modal" :msg="modal"/>
+    <Modal 
+        tag="div" 
+        v-if="modal" 
+        :msg="modal" 
+        :class="user ? 'success' : 'error'"
+        @modalClose="modal = false"/>
 </div>
 </template>
 
 <script>
-import {signIn, auth, onAuthStateChanged, sign_Out} from '../assets/modulesJS/fireBaseAuth'
-import modalMessage from './modalMessage.vue'
+import {signIn, auth, onAuthStateChanged, sign_Out} from '../assets/modulesJS/fireBaseAuth';
+import modalMessage from './modalMessage.vue';
+import {showWindow} from '../assets/modulesJS/gsapModalWindow';
 
 export default {
     data(){
         return {
             email: '',
-            name: '',
             password: '',
             user: '',
             modal: false,
@@ -33,21 +38,26 @@ export default {
         this.isSigned();
     },
     methods:{
-        signIn(){
-            signIn(this.email, this.password)
-            .then(res => {
+       async signIn(){
+            await signIn(this.email, this.password)
+            .then(res => { 
                 if(res.status){
-                    this.$router.push('/');
+                    this.modal = "Успешно!";
+                    setTimeout(()=>{
+                       this.$router.push('/')
+                    }, 1500)
                 }
                 else{
-                    this.modal = res.error.message
+                    this.modal = res.error.message;
                 }
             })
+            showWindow('.modalMessage')
+            this.cleareInput()
         },
         isSigned(){
-                    onAuthStateChanged(auth, (user) => {
-                    if (user) {
-                        this.user = user.displayName;
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    this.user = user.displayName;
                         } 
                         else {
                         this.user = null
@@ -57,6 +67,10 @@ export default {
         out(){
             return sign_Out()
         },
+        cleareInput(){
+            this.email = '';
+            this.password = '';
+        }
         
     },
     components: {

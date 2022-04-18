@@ -1,5 +1,7 @@
 $green: rgb(38, 143, 38);
+$green2: rgb(156, 233, 156);
 $orange: rgb(240, 166, 30);
+$red: rgb(245, 146, 139);
 $blue: rgb(88, 123, 238);
 
 @mixin pseudoClassMenuItem {
@@ -19,6 +21,7 @@ $blue: rgb(88, 123, 238);
     color: white;
     padding: 3% 5% 3% 5%;
     min-width: 7vw;
+    min-height: 7vw;
     text-align: center;
     word-wrap: break-word;
     background: $blue;
@@ -31,4 +34,27 @@ $blue: rgb(88, 123, 238);
     min-width: 10vw;
     text-align: left;
     word-wrap: break-word;
+}
+
+@mixin burger {
+    width: 90%;
+    height: 15%;
+    background: black;
+    position: relative;
+    transition: all .3s ease-in-out;
+    &:after, &:before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: black;
+        left: 0;
+        transition: all .3s ease-in-out; 
+        }
+            &:after {
+                top: 150%;
+            }
+            &:before {
+                top: -150%;
+            }
 }
