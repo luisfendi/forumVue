@@ -1,6 +1,6 @@
 <template>
-<div class="wrapper">
-  <form class="signUpForm"> 
+<div class="wrapper" >
+  <form class="signUpForm" v-if="!signed"> 
       <input type="name" placeholder="name" v-model="name">
       <input type="email" placeholder="email" v-model="email">
       <input type="password" placeholder="password" v-model="password">
@@ -12,11 +12,15 @@
         :msg="modal" 
         :class="status ? 'success' : 'error'"
         @modalClose="modal = false"/>
+    <div class="signedBlock" v-if="signed">
+        <p>вход осуществлен по пользователем {{signed}}</p>
+        <button type="submit" @click="out">выйти</button>
+    </div>
 </div>
 </template>
 
 <script>
-import {createUser} from '../assets/modulesJS/fireBaseAuth';
+import {createUser, auth, getUser, sign_Out, onAuthStateChanged} from '../assets/modulesJS/fireBaseAuth';
 import modalMessage from './modalMessage.vue';
 
 export default {
@@ -27,6 +31,7 @@ export default {
             password: '',
             modal: false,
             status: '',
+            signed: '',
         }
     },
     methods:{
@@ -45,11 +50,25 @@ export default {
                     }, 1500)
                 }
             })
-        }
+        },
+         out(){
+            return sign_Out()
+        },
     },
     components: {
         Modal: modalMessage,
-    }
+    },
+    created(){
+       onAuthStateChanged(auth,(user) => {
+                if(user){
+                    this.signed = user.displayName
+                }
+                else {
+                    this.signed = false
+                }
+            })
+    },
+   
 }
 </script>
 
