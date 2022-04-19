@@ -58,3 +58,8 @@ $blue: rgb(88, 123, 238);
                 top: -150%;
             }
 }
+
+@mixin wrapper {
+    padding-right: 5%;
+    padding-left: 5%;
+}
