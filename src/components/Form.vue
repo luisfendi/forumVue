@@ -25,7 +25,7 @@ export default {
                 sendComment(this.$route.params.key, {
                 author: this.author?.displayName,
                 text: this.comment,
-                uid: this.author?.uid ,
+                uid: this.author?.uid,
                 time: this.getTime()
                 })
             } 

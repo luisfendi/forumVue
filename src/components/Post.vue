@@ -5,16 +5,14 @@
     <span class="conetent-type">{{info.type}}</span>
     <Form @signIn="$emit('showModal')" :author="user"/>
     <h3>{{user?.uid}}</h3>
-    <!-- <ul class="content-comments"> -->
     <transition-group class="content-comments" tag="ul" name="list">
         <li v-for="(comment,i) in comments" :key="i"
         @click="show(i)">
-            <h4>{{comment.author}}:</h4>
+            <h4>{{comment.author}} <span v-if="comment?.uid == user?.uid">you</span></h4>
             <p>{{comment.text}}</p>
             <p>{{comment.time?.day}} {{comment.time?.hours}}:{{comment.time?.min}}</p>
         </li>
     </transition-group>
-    <!-- </ul> -->
 </div>
 </template>
 
@@ -52,7 +50,6 @@ import {onAuthStateChanged, auth} from '../assets/modulesJS/fireBaseAuth';
                     })
             },
             getKey(item){
-                console.log(key(item))
                 return key(item)
             },
             isSigned(){
@@ -83,10 +80,15 @@ import {onAuthStateChanged, auth} from '../assets/modulesJS/fireBaseAuth';
                 display:flex;
                 justify-content: space-between;
                 &:first-child{
-                    border-top: none;                }
+                    border-top: none;                
+                    }
                 h4 {
                     width: 20%;
                     margin-right: 10%;
+                    span {
+                        opacity: 0.3;
+                        font-size: .7rem;
+                    }
                 }
                 
             }

@@ -16,17 +16,18 @@ async function getPhoto(){
 }
 
 function createUser(email, password, displayName){
-    createUserWithEmailAndPassword(auth, email, password)
+    return createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
         const user = userCredential.user;
         updateProfile(user, {
           displayName,
           photoURL: 'https://loremflickr.com/320/240?random=1'
         })
+        return true
     })
     .catch((error) => {
         const errorMessage = error.message;
-      console.log(errorMessage)
+        return errorMessage
     });
 }
 
