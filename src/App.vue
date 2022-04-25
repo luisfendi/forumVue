@@ -4,9 +4,9 @@
         <Link  class="link-home" :to="'/'"><span>на главную</span></Link>
         <Link  class="link-signIn"  :to="'signin'" v-if="!user && $route.path != '/signin'"><span>войти</span></Link>
         <Link  class="link-profile" v-if="user" :to="'profil'"><span>профиль</span></Link>
-        <button @click="out" class="link-logout" v-if="user"><span>signOut</span></button>
+        <a @click="out" class="link-logout" v-if="user"><span>signOut</span></a>
       </div>
-    <Menu :list="list"/>
+      <Menu :list="list"/>
   </header>
   <router-view :key="$route?.params.key" @showModal="modalSignIn = true"></router-view>
   <modal-sign-in 
@@ -34,7 +34,7 @@ import {computed} from 'vue';
       methods: {
         isSigned(res){
             onAuthStateChanged(auth, (user) => {
-            this.user = user
+              this.user = user
             })
         },
         out(){

@@ -7,6 +7,7 @@ app.config.unwrapInjectedRef = true
 
 import Link from './components/routerLink.vue';
 import ModalSignIn from './components/ModalSignIn.vue';
+import ModalM from './components/modalMessage.vue';
 
 app.component('Link', Link);
 app.component('ModalSignIn', ModalSignIn);

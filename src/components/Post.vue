@@ -1,25 +1,22 @@
 <template>
-<div class="content">
-    <img :src="info.img" class="content-img">
-    <h3 class="content-name">{{info.name}}</h3>
-    <span class="conetent-type">{{info.type}}</span>
-    <Form @signIn="$emit('showModal')" :author="user"/>
-    <h3>{{user?.uid}}</h3>
-    <transition-group class="content-comments" tag="ul" name="list">
-        <li v-for="(comment,i) in comments" :key="i"
-        @click="show(i)">
-            <h4>{{comment.author}} <span v-if="comment?.uid == user?.uid">you</span></h4>
-            <p>{{comment.text}}</p>
-            <p>{{comment.time?.day}} {{comment.time?.hours}}:{{comment.time?.min}}</p>
-        </li>
-    </transition-group>
-</div>
+    <div class="content">
+        <img :src="info.img" class="content-img">
+        <h3 class="content-name">{{info.name}}</h3>
+        <span class="conetent-type">{{info.type}}</span>
+        <Form @click="!user ? $emit('showModal') : ''" :author="user"/>
+        <transition-group class="content-comments" tag="ul" name="list">
+            <li v-for="(comment,i) in comments" :key="i">
+                <h4>{{comment.author}} <span v-if="comment?.uid == user?.uid">you</span></h4>
+                <p>{{comment.text}}</p>
+                <p>{{comment.time?.day}} {{comment.time?.hours}}:{{comment.time?.min}}</p>
+            </li>
+        </transition-group>
+    </div>
 </template>
 
 <script>
 import Form from './Form.vue'
 import {ref,  onValue, db} from "../assets/modulesJS/fireBase"
-import key from "../assets/modulesJS/getKeyInObject"
 import {onAuthStateChanged, auth} from '../assets/modulesJS/fireBaseAuth';
 
    export default {
@@ -49,13 +46,10 @@ import {onAuthStateChanged, auth} from '../assets/modulesJS/fireBaseAuth';
                        this.info = snap.val()
                     })
             },
-            getKey(item){
-                return key(item)
-            },
             isSigned(){
-                        onAuthStateChanged(auth, (user) => {
-                            this.user = user;
-                       })
+                    onAuthStateChanged(auth, (user) => {
+                        this.user = user;
+                    })
             },
         }
     }

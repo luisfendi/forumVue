@@ -6,7 +6,6 @@
             id="checkbox"
             v-model="burger">
             <label for="checkbox"><span></span></label>
-            
         </div>
         <Transition name="listEnter">
                 <ul class="menu-burger--list links" v-if="burger">
@@ -49,7 +48,7 @@ export default{
         emitter.on('closeMenu', this.closeBurger)
     },
     components: {
-        Link: Link,
+        Link,
     }
 }
 </script>
@@ -169,8 +168,47 @@ export default{
     opacity: 0;
     transform: translateX(-50px);
 }
+.new span {
+    background: blue;
+}
 
-
+.menu {
+    .new{
+        background: red;
+        transform: translateX(300%);
+        position:absolute;
+        top: 5%;
+        right: 5%;
+        width: 6vw;
+        height: 6vw;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        span {
+            width: 90%;
+            height: 15%;
+            background: green;
+            position: relative;
+            transition: all .3s ease-in-out;
+            transform: rotate(45deg);
+            &:after, &:before {
+                    content: '';
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    background: black;
+                    left: 0;
+                    transition: all .3s ease-in-out; 
+                }
+                &:after {
+                    top: 150%;
+            }
+                &:before {
+                    top: -150%;
+            }
+        }
+    }
+}
 
 a {
     display: block;

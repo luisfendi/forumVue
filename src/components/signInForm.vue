@@ -58,10 +58,10 @@ export default {
             onAuthStateChanged(auth, (user) => {
                 if (user) {
                     this.user = user.displayName;
-                        } 
-                        else {
+                    } 
+                    else {
                         this.user = null
-                        }
+                    }
                     })
         },
         out(){

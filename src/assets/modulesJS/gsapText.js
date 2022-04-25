@@ -6,8 +6,9 @@ export default (selector, text) => {
     let tl = gsap.timeline()
     let oldText = document.querySelector(selector).textContent
     tl
-    .from('.text-title', {x: '-100%'})
-    .from('.text-title1', {x: '100%'}, "<")
+    .from('.text-title', {x: '-100vw'})
+    .from('.text-title1', {x: '100vw'}, "<")
+    .from('.text-title2', {x: '100vw', ease: "back.out(1)"}, '>')
     .to(selector, {
         duration: 1,
         delay: 1,
@@ -27,5 +28,6 @@ export default (selector, text) => {
             newClass: 'orange',
         },
         ease: 'none',
-    }, ">")   
+    }, ">") 
+    .to('.text-title2', {opacity: 0, display: 'none'}, '+3')
 }

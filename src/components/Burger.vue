@@ -17,6 +17,7 @@
 <style scoped lang="scss">
 @import '../assets/scss/general.scss';
     .burger {
+        background: orange;
         position:absolute;
         top: 5%;
         right: 5%;

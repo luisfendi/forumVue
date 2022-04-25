@@ -21,17 +21,14 @@ export default {
     },
     methods: {
         send(){
-            if(this.author){
+            //if(this.author){
                 sendComment(this.$route.params.key, {
                 author: this.author?.displayName,
                 text: this.comment,
                 uid: this.author?.uid,
                 time: this.getTime()
                 })
-            } 
-            else {
-                this.$emit('signIn')
-            }
+            //} 
         },
         getTime(){
             let date = new Date();

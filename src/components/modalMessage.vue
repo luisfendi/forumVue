@@ -13,11 +13,12 @@ export default {
         msg: String,
     },
     render(){
-        return h(this.tag, {class: 'modalMessage'}, [h('h3', {}, this.msg), 
-        h(Burger, {
+        return h(this.tag, {class: 'modalMessage'}, [
+            h('h3', {}, this.msg), 
+            h(Burger, {
             onClick: ()=>{setTimeout(() => {this.closeModal()}, 300)},
             class: 'modal-closer',
-        })
+            }),
         ])
     },
     methods: {

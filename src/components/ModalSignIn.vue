@@ -1,19 +1,24 @@
 <template>
 <div class="wrapper" @click.self="closeModal">
-  <div class="modal">
+  <div class="modal modalMessage">
       <h3>Войдите в аккаунт, чтобы оставить комментарий</h3>
-      <button @click="closeModal" class="modal-closer">close</button>
+      <Burger @click="closeModal" class="modal-closer"/>
       <Link :to="'signin'" :title="'войти'" @click="closeModal"/>
   </div>
 </div>
 </template>
 
 <script>
+import Burger from './Burger.vue';
+
 export default {
     methods: {
         closeModal(){
             this.$emit('modalClose')
         }
+    },
+    components: {
+        Burger,
     }
 }
 </script>
