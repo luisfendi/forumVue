@@ -9,6 +9,7 @@
       <Menu :list="list"/>
   </header>
   <router-view :key="$route?.params.key" @showModal="modalSignIn = true"></router-view>
+  <Footer/>
   <modal-sign-in 
     v-if="modalSignIn" 
     @modalClose="modalSignIn = false"
@@ -19,6 +20,7 @@
 <script>
 
 import Menu from './components/Menu.vue';
+import Footer from './components/Footer.vue';
 import getList from './assets/modulesJS/getList';
 import {onAuthStateChanged, sign_Out, auth} from './assets/modulesJS/fireBaseAuth';
 import {computed} from 'vue';
@@ -55,6 +57,7 @@ import {computed} from 'vue';
       },
       components: {
         Menu: Menu,
+        Footer: Footer,
       },
       provide(){
         return {
@@ -84,6 +87,7 @@ import {computed} from 'vue';
     justify-content: space-between;
     padding: 5% 7% 5% 0%;
     align-items:center;
+    background: $green2;
 }
 
 .header-links{

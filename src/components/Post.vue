@@ -65,6 +65,8 @@ import {onAuthStateChanged, auth} from '../assets/modulesJS/fireBaseAuth';
         &-comments{
             width: 100%;
             padding-top: 10%;
+            max-height: 50vh;
+            overflow: auto;
             li {
                 padding: 5% 10% 5% 0%;
                 border: 1px solid rgba(122, 122, 122, 0.5);
