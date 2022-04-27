@@ -1,9 +1,11 @@
 <template>
     <div class="text">
+      <div class="cube"></div>
+      <div class="cube2"></div>
       <h1 class="text-title">Forum</h1>
       <h3 class="text-title1">about <span class="sub-title">pictures</span></h3>
-      <p class="text-title2">Авторизуйся и оставь комментарий под постом</p>
-    </div>
+     <!-- <p class="text-title2">Авторизуйся и оставь комментарий под постом</p>
+    --></div>
 </template>
 
 <script>
@@ -23,27 +25,42 @@ import textAnimate from '../assets/modulesJS/gsapText.js'
   position: absolute;
   top: 30vh;
   left: 25vw;
-  border: 2px solid black;
-  &:before {
-    content: '';
-    position: absolute;
-    box-shadow: inset 0px 0px 0px 5px red;
-    left: 0;
-    top: 0;
-    right:0;
-    bottom: 0;
-    margin: -5%;
-    animation: border 5s linear infinite;
-  }
   &-title {
     font-size: 5rem;
+    position: relative;
+    z-index: 3;
   }
    &-title1 {
     font-size: 2rem;
+    z-index: 3;
+    position: relative;
   }
   &-title2{
     font-size: 1.5rem;
     margin-top: 10%;
+    z-index: 3;
+  }
+  .cube, .cube2 {
+    width: 40vw;
+    height: 40vw;
+    background: $green2;
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    &-item {
+      width:30%;
+      background: $green2;
+      border: 2px solid black;
+    }
+  }
+  .cube2 {
+        background: $blue;
+        z-index: 0;
   }
 }
 
@@ -57,18 +74,5 @@ import textAnimate from '../assets/modulesJS/gsapText.js'
     background: $green;
 }
 
-@keyframes border {
-  0%, 100% {
-    clip: rect(0px, 240px, 15px, 0);
-  }
-  25% {
-    clip: rect(0px, 20px, 240px, 0);
-  }
-  50% {
-    clip: rect(240px, 240px, 240px, 0);
-  }
-  75%{
-      clip: rect(0px, 240px, 240px, 240px);
-  }
-}
+
 </style>
