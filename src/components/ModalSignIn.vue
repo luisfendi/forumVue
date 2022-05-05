@@ -24,6 +24,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../assets/scss/general.scss';
 .wrapper {
     position: absolute;
     top: 0; 
@@ -37,8 +38,19 @@ export default {
     .modal{
         border: 2px solid black;
         width: 40%;
+        height: auto;
         background: white;
     }
 }
     
+
+@media(min-width: $desktop){
+    .wrapper {
+    
+    .modal{
+       width: 10%;
+       height: auto;
+    }
+}
+}
 </style>

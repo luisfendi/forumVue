@@ -102,5 +102,27 @@ export default {
             }
         }
 }
-    
+    @media(min-width: $desktop){
+        .wrapper{
+   
+    .signInForm, .signedBlock {
+            width: 50%; 
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+
+            input {
+                @include input;
+                margin-bottom: 5%;
+            }
+            button {
+                @include button;
+                padding: 1% 2% 1% 2%;
+                width: auto;
+                height: 2vw;
+                min-height: 0;
+            }
+        }
+}
+    }
 </style>

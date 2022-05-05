@@ -45,4 +45,6 @@ export default {
     .error {
         background: $red;
     }
+
+
 </style>

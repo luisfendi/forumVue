@@ -51,17 +51,20 @@ export default {
             @include input;
         }
         &-button{
+            justify-content: center;
             @include button;
             min-width:35px;
-            
+            padding: 1%;
             display: flex;
             &--text {
                 display: none;
             }
             &--icon{
+                width: 100%;
+                height: 100%;
+                
                 position:relative;
-                min-width: 4vw;
-                height: 4vw;
+                width: 100%;
                 display: flex;
                 justify-content: center;
                 align-items:center;
@@ -75,6 +78,39 @@ export default {
                     background-position: center;
                 }
             }
+           
         }
     }
+
+@media(min-width: $desktop){
+     .form{
+         order: 3;
+         margin-top: 3%;
+        &-comment{
+        }
+        &-button{
+            @include button;
+            min-width: 2vw;
+            min-height: 2vw;
+            padding: 1%;
+            &--text {
+            }
+            &--icon{
+                
+                @include pseudoClassMenuItem; 
+                width: 100%;
+                height: 100%;
+                
+                &::after{
+                    background-image: url('../assets/icons/send.svg');
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    width: 100%;
+                    height: 100%;
+                    background-position: center;
+                }
+            }
+        }
+    }
+}
 </style>

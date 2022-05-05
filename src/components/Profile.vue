@@ -1,9 +1,11 @@
 <template>
-  <div class="profil">
-      <h1 class="profil-text">Профиль пользователя:</h1>
+  <div class="profil wrapper">
       <img class="profil-img" :src="user?.photoURL">
-      <h2 class="profil-name">{{user?.displayName}}</h2>
-      <p class="profil-email">{{user?.email}}</p>
+      <div>
+        <h1 class="profil-text">Профиль пользователя:</h1>
+        <h2 class="profil-name">{{user?.displayName}}</h2>
+        <p class="profil-email">{{user?.email}}</p>
+      </div>
   </div>
 </template>
 
@@ -39,13 +41,27 @@ export default {
     align-items: baseline;
     justify-content: flex-start;
     &-img{
-      width: 100%;
+      width: 50%;
       border: 1px solid black;
-      min-width: 50vw;
-      min-height: 50vw;
+      min-width: 30vw;
+      min-height: 30vw;
     }
     &-name, &-email {
       width: 50%;
     }
+  }
+
+  @media(min-width: $desktop){
+    .profil {
+      align-items: start;
+    &-img{
+      width: 25%;
+      min-width: 10vw;
+      min-height: 10vw;
+    }
+    &-name, &-email {
+      width: 50%;
+    }
+  }
   }
 </style>

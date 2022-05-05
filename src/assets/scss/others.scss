@@ -78,3 +78,10 @@
 }
 
 
+@media(min-width: $desktop){
+    .modalMessage {
+        width: 10%;
+        height: auto;
+    }
+}
+

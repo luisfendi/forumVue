@@ -73,7 +73,6 @@ import {computed} from 'vue';
 @import './assets/base.css';
 @import './assets/scss/general.scss';
 
-
 #app {
     max-width: 1280px;
     margin: 0 auto;
@@ -109,5 +108,33 @@ import {computed} from 'vue';
     }
 }
 
+@media(min-width: 1000px){
+  .header {
+    padding: 2% 4% 2% 0%;
+    position: relative;
+  }
+  .header-links{
+    order: 2;
+    display: flex;
+    justify-content: flex-end;
+    width: 50%;
+  }
 
+  .link-home, .link-signIn, .link-profile, .link-logout {
+    min-width: 10vw;
+    z-index: 4;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: end;
+    span {
+      display: block;
+      color: black;
+    }
+    @include pseudoClassMenuItem;
+      &::after{
+        display: none;
+      }
+  }
+}
 </style>

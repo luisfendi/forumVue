@@ -96,4 +96,23 @@ export default {
             }
         }
 }
+
+@media(min-width: $desktop){
+    .wrapper{
+    
+    .signUpForm, .signedBlock{
+          
+
+            input {
+                
+            }
+            button {
+                padding: 1% 2% 1% 2%;
+                width: auto;
+                height: 2vw;
+                min-height: 0;
+            }
+        }
+}
+}
 </style>

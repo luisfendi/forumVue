@@ -62,6 +62,7 @@ export default{
     min-width: 10%;
     z-index: 5;
     order: 1;
+    position: relative;
     &-burger{
         transform: translateX(50%);
         input {
@@ -172,46 +173,91 @@ export default{
     background: blue;
 }
 
-.menu {
-    .new{
-        background: red;
-        transform: translateX(300%);
-        position:absolute;
-        top: 5%;
-        right: 5%;
-        width: 6vw;
-        height: 6vw;
-        display:flex;
-        justify-content: center;
-        align-items: center;
-        span {
-            width: 90%;
-            height: 15%;
-            background: green;
-            position: relative;
-            transition: all .3s ease-in-out;
-            transform: rotate(45deg);
-            &:after, &:before {
-                    content: '';
-                    position: absolute;
-                    width: 100%;
-                    height: 100%;
-                    background: black;
-                    left: 0;
-                    transition: all .3s ease-in-out; 
-                }
-                &:after {
-                    top: 150%;
-            }
-                &:before {
-                    top: -150%;
-            }
-        }
-    }
-}
-
 a {
     display: block;
+}
+
+@media(min-width: 1000px){
+    .menu {
+        &-burger{
+        input {
+            &:checked~label{
+              span {
+                    
+                    &:after, &:before {
+                        
+                    }
+                    &:after {
+                        
+                    }
+                    &:before {
+                        
+                    }
+              }     
+            }
+        }
+
+        label {
+            width: 2vw;
+            height: 2vw;
+            span {
+              
+                &:after, &:before {
+                   
+                }
+                &:after {
+                  
+                }
+                &:before {
+            
+                }
+            }
+        }
+    
+        }
+    }
+    .menu {
+        position: static;
+    }
+    .links {
+       left: 5%;
+       width: auto;
+       border: none;
+       border-radius: 0;
+       background: $red;
+       margin: 0;
+    a {
+       
+       @include pseudoClassMenuItem;
+       &:after{
+           float:right;
+           width: 1.5vw;
+           height: 1.5vw;
+       }
+       &:last-child{
+           border: none;
+       }
+    } 
+}
+
+
+
+
+.listEnter-enter-active{
+    transition: all 0.8s ease;
+}
+
+.listEnter-leave-active {
+    transition: all 0.8s ease;
+
+}
+
+
+.listEnter-enter-from,
+.listEnter-leave-to {
+    opacity: 0;
+    transform: translateY(-50vw);
+}
 }
 </style>
 

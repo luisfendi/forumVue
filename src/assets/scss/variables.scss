@@ -3,7 +3,8 @@ $green2: rgb(156, 233, 156);
 $orange: rgb(240, 166, 30);
 $red: rgb(245, 146, 139);
 $blue: rgb(88, 123, 238);
-
+$blueDark: rgb(26, 58, 163);
+$desktop: 1000px;
 @mixin pseudoClassMenuItem {
     &::after{
         content: '';
@@ -22,9 +23,13 @@ $blue: rgb(88, 123, 238);
     padding: 3% 5% 3% 5%;
     min-width: 7vw;
     min-height: 7vw;
+    line-height: 0;
     text-align: center;
     word-wrap: break-word;
     background: $blue;
+    &:hover{
+        background: $blueDark;
+    }
 }
 
 @mixin input {
@@ -62,4 +67,10 @@ $blue: rgb(88, 123, 238);
 @mixin wrapper {
     padding-right: 5%;
     padding-left: 5%;
+}
+
+.wrapper {
+    padding-top: 5%;
+    padding-bottom: 5%;
+    min-height: 80vh;
 }

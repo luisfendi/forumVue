@@ -6,9 +6,9 @@ export default (selector, text) => {
     let tl = gsap.timeline()
     let oldText = document.querySelector(selector).textContent
     tl
-    .from('.text-title', {x: '-100vw'})
-    .from('.text-title1', {x: '100vw'}, "<")
-    .from('.text-title2', {x: '100vw', ease: "back.out(1)"}, '>')
+    .from('.in-text-title', {x: '-100vw'})
+    .from('.in-text-title1', {x: '100vw'}, "<")
+    .from('.in-text-title2', {x: '100vw', ease: "back.out(1)"}, '>')
     .from('.cube', {x: '-100vw', y: '-50vw', rotate: -90, duration: .8}, '0')
     .from('.cube2', {x: '100vw', y: '50vw', rotate: 90, duration: .8}, '<')
     .to(selector, {

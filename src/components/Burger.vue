@@ -67,4 +67,22 @@
                 }
         }
     }
+
+    @media(min-width: $desktop){
+        .burger {
+        width: 2vw;
+        height: 2vw;
+        span {
+            
+            &:after, &:before {
+                   
+                }
+                &:after {
+                }
+                &:before {
+                }
+        }
+    }
+
+    }
 </style>

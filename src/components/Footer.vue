@@ -61,7 +61,7 @@ export default{
         flex-wrap: wrap;
 }
     .footer {
-        position: absolute;
+        width: 100%;
         bottom: 0;
         padding-top: 3%;
         padding-bottom: 3%;
@@ -108,70 +108,47 @@ export default{
     }
 
 
-// @media(min-width: @laptop){
-//     .footer {
-        
-//         .technologies, .contacts {
-           
-//         }
-//         .list{
+
+@media(min-width: 1000px){
+    .footer {
+        padding-top: 1%;
+        padding-bottom: 1%;
+        .technologies, .contacts {
+           width: 23%;
+        }
+        .list{
             
-//             .item{
-//                 width: 10%;
-                
-
-//                 p {
-                
-//                 }
-//                 img{
-                   
-//                 }
-//             }
-//         } 
-//     }
-// }
-
-
-// @media(min-width: @desktop){
-//     .footer {
-//         padding-top: 1%;
-//         padding-bottom: 1%;
-//         .technologies, .contacts {
-//            width: 23%;
-//         }
-//         .list{
-            
-//             .item {
-//                 width: 13%;
-//                 text-align: center;  
-//                 position: relative;
-//                 justify-content: center;
-//                 min-height: 34px;
-//                 margin-right: 10%;
-//                 img{ 
+            .item {
+                width: 13%;
+                text-align: center;  
+                position: relative;
+                justify-content: center;
+                min-height: 34px;
+                margin-right: 10%;
+                img{ 
                     
-//                     animation: displayBlock .7s;
-//                 }
-//                 p{
+                    animation: displayBlock .7s;
+                }
+                p{
                     
-//                     width: 100%;
-//                 }
+                    width: 100%;
+                }
                 
                 
                
-//             } 
+            } 
 
-//             .technologies-item{
-//                 &:hover img{
-//                     display: none;
-//                 }
-//                 &:hover p {
-//                     display: block;
-//                     animation: displayBlock .7s;
-//                 }
-//             }
-//         } 
-//     }
-// }
+            .technologies-item{
+                &:hover img{
+                    display: none;
+                }
+                &:hover p {
+                    display: block;
+                    animation: displayBlock .7s;
+                }
+            }
+        } 
+    }
+}
     
 </style>
